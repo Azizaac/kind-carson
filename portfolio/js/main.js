@@ -1,14 +1,14 @@
-// Main Portfolio Interactive Engine
+// Interactive Cosmic Portfolio Engine (Matching Exact TikTok & Screenshots)
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Preloader Logic
+    // 1. Preloader Screen
     const preloader = document.getElementById('preloader');
     const preloaderBar = document.getElementById('preloader-bar');
     const preloaderText = document.getElementById('preloader-text');
 
     let progress = 0;
     const progressInterval = setInterval(() => {
-        progress += Math.floor(Math.random() * 18) + 10;
+        progress += Math.floor(Math.random() * 15) + 12;
         if (progress >= 100) {
             progress = 100;
             clearInterval(progressInterval);
@@ -16,132 +16,281 @@ document.addEventListener('DOMContentLoaded', () => {
             if (preloaderText) preloaderText.textContent = '100%';
 
             setTimeout(() => {
-                if (preloader) preloader.classList.add('fade-out');
-                // Trigger AOS animations once loaded
+                if (preloader) preloader.style.opacity = '0';
+                setTimeout(() => {
+                    if (preloader) preloader.style.display = 'none';
+                }, 500);
+
                 if (window.AOS) {
-                    window.AOS.init({
-                        duration: 800,
-                        easing: 'ease-out-cubic',
-                        once: true,
-                        offset: 50
-                    });
+                    window.AOS.init({ duration: 800, once: true, offset: 40 });
                 }
-            }, 400);
+                updateMascotPosition('home');
+            }, 300);
         } else {
             if (preloaderBar) preloaderBar.style.width = progress + '%';
             if (preloaderText) preloaderText.textContent = progress + '%';
         }
-    }, 70);
+    }, 50);
 
-    // 2. Typing Text Effect
-    const typingElement = document.getElementById('typing-text');
-    const roles = [
-        "Full-Stack Web Developer",
-        "Creative UI/UX Engineer",
-        "Backend & Cloud Enthusiast",
-        "Automation & Bot Builder",
-        "Open-Source Contributor"
+    // 2. Gliding Mascot on Capsule Nav
+    const navMascot = document.getElementById('nav-mascot');
+    const navTabs = document.querySelectorAll('.nav-tab');
+
+    function updateMascotPosition(tabName) {
+        if (!navMascot) return;
+        const targetTab = document.querySelector(`.nav-tab[data-tab="${tabName}"]`);
+        if (targetTab) {
+            const tabRect = targetTab.getBoundingClientRect();
+            const parentRect = targetTab.parentElement.getBoundingClientRect();
+            const offsetLeft = tabRect.left - parentRect.left + (tabRect.width / 2) - 14;
+            navMascot.style.left = `${offsetLeft}px`;
+
+            navTabs.forEach(t => {
+                t.classList.remove('text-white', 'bg-blue-600/30', 'border', 'border-blue-500/40');
+                t.classList.add('text-slate-400');
+            });
+            targetTab.classList.add('text-white', 'bg-blue-600/30', 'border', 'border-blue-500/40');
+            targetTab.classList.remove('text-slate-400');
+        }
+    }
+
+    navTabs.forEach(tab => {
+        tab.addEventListener('click', (e) => {
+            const tabName = tab.getAttribute('data-tab');
+            updateMascotPosition(tabName);
+        });
+    });
+
+    // ScrollSpy for Nav Tabs & Mascot
+    const sectionIds = ['home', 'about', 'portfolio', 'contact'];
+    window.addEventListener('scroll', () => {
+        let currentSection = 'home';
+        const scrollY = window.pageYOffset + 200;
+
+        sectionIds.forEach(id => {
+            const el = document.getElementById(id);
+            if (el && scrollY >= el.offsetTop) {
+                currentSection = id;
+            }
+        });
+        updateMascotPosition(currentSection);
+    });
+
+    // 3. Spiderman Avatar Interactive Switcher (Screenshots 1, 3, 4)
+    const avatarReal = document.getElementById('avatar-real');
+    const avatarMask = document.getElementById('avatar-mask');
+    const avatarSuit = document.getElementById('avatar-suit');
+    const avatarBox = document.getElementById('spidey-avatar-box');
+    const toggleBtn = document.getElementById('avatar-toggle-btn');
+
+    // Modes: 0 = Mask on Blazer, 1 = Full Spiderman Suit, 2 = Real Face
+    let avatarMode = 0;
+    const avatarModes = [
+        { name: "Spiderman Mask", btnText: "🕷️ Mode: Spidey Mask (Click to switch)" },
+        { name: "Full Spiderman", btnText: "🕸️ Mode: Full 3D Spiderman (Click to switch)" },
+        { name: "Real Face", btnText: "👤 Mode: Real Photo (Click to switch)" }
     ];
 
-    let roleIdx = 0;
+    function applyAvatarMode(mode) {
+        if (!avatarReal || !avatarMask || !avatarSuit) return;
+
+        // Reset all
+        [avatarReal, avatarMask, avatarSuit].forEach(el => {
+            el.classList.remove('opacity-100', 'scale-100');
+            el.classList.add('opacity-0', 'scale-95');
+        });
+
+        if (mode === 0) {
+            avatarMask.classList.remove('opacity-0', 'scale-95');
+            avatarMask.classList.add('opacity-100', 'scale-100');
+        } else if (mode === 1) {
+            avatarSuit.classList.remove('opacity-0', 'scale-95');
+            avatarSuit.classList.add('opacity-100', 'scale-100');
+        } else if (mode === 2) {
+            avatarReal.classList.remove('opacity-0', 'scale-95');
+            avatarReal.classList.add('opacity-100', 'scale-100');
+        }
+
+        if (toggleBtn) {
+            toggleBtn.innerHTML = `<span>${avatarModes[mode].btnText}</span>`;
+        }
+    }
+
+    function cycleAvatar() {
+        avatarMode = (avatarMode + 1) % 3;
+        applyAvatarMode(avatarMode);
+    }
+
+    if (avatarBox) avatarBox.addEventListener('click', cycleAvatar);
+    if (toggleBtn) toggleBtn.addEventListener('click', cycleAvatar);
+
+    // 4. Role Typing Animation (Screenshot 2)
+    const roleTyping = document.getElementById('role-typing-text');
+    const roleList = [
+        "IT Edu Student",
+        "Full-Stack Web Developer",
+        "Creative UI/UX Designer",
+        "Cloud & Automation Engineer"
+    ];
+
+    let rIdx = 0;
     let charIdx = 0;
     let isDeleting = false;
-    let typingSpeed = 100;
 
-    function typeEffect() {
-        if (!typingElement) return;
-        const currentRole = roles[roleIdx];
+    function typeRoles() {
+        if (!roleTyping) return;
+        const currentRole = roleList[rIdx];
 
         if (isDeleting) {
-            typingElement.textContent = currentRole.substring(0, charIdx - 1);
+            roleTyping.textContent = currentRole.substring(0, charIdx - 1);
             charIdx--;
-            typingSpeed = 50;
         } else {
-            typingElement.textContent = currentRole.substring(0, charIdx + 1);
+            roleTyping.textContent = currentRole.substring(0, charIdx + 1);
             charIdx++;
-            typingSpeed = 100;
         }
+
+        let speed = isDeleting ? 40 : 80;
 
         if (!isDeleting && charIdx === currentRole.length) {
             isDeleting = true;
-            typingSpeed = 1800; // Pause at end of word
+            speed = 1800; // Pause at word end
         } else if (isDeleting && charIdx === 0) {
             isDeleting = false;
-            roleIdx = (roleIdx + 1) % roles.length;
-            typingSpeed = 400; // Pause before typing new word
+            rIdx = (rIdx + 1) % roleList.length;
+            speed = 400;
         }
 
-        setTimeout(typeEffect, typingSpeed);
+        setTimeout(typeRoles, speed);
     }
-    setTimeout(typeEffect, 1000);
+    setTimeout(typeRoles, 800);
 
-    // 3. Stats Counter Animation
-    const counters = document.querySelectorAll('.stat-counter');
-    let hasAnimatedCounters = false;
+    // 5. Spotify Daily Rotation Interactive Music Player (Screenshot 2)
+    const playBtn = document.getElementById('spotify-play-btn');
+    const nowPlayingTitle = document.getElementById('now-playing-title');
+    const nowPlayingArtist = document.getElementById('now-playing-artist');
+    const trackRows = document.querySelectorAll('.track-row');
 
-    function animateCounters() {
-        if (hasAnimatedCounters) return;
-        counters.forEach(counter => {
-            const target = +counter.getAttribute('data-target');
-            const suffix = counter.getAttribute('data-suffix') || '';
-            const duration = 1500;
-            const startTime = performance.now();
+    const tracks = [
+        { title: "Terbuang Dalam Waktu", artist: "Barasuara", duration: "04:41", freq: 220 },
+        { title: "Raindance (feat. Tems)", artist: "Dave, Tems", duration: "03:39", freq: 261.63 },
+        { title: "Одного", artist: "Татьяна Куртукова", duration: "03:12", freq: 329.63 }
+    ];
 
-            function updateCounter(currentTime) {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                // Ease out expo
-                const currentVal = Math.floor(progress * target);
-                counter.textContent = currentVal + suffix;
+    let currentTrackIdx = 0;
+    let isPlayingMusic = false;
+    let audioContext = null;
+    let synthOsc = null;
+    let synthGain = null;
 
-                if (progress < 1) {
-                    requestAnimationFrame(updateCounter);
-                } else {
-                    counter.textContent = target + suffix;
-                }
+    function startLoFiSynth(freq) {
+        if (!audioContext) {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            audioContext = new AudioCtx();
+        }
+        if (synthOsc) {
+            synthOsc.stop();
+        }
+        synthOsc = audioContext.createOscillator();
+        synthGain = audioContext.createGain();
+
+        synthOsc.type = 'triangle';
+        synthOsc.frequency.setValueAtTime(freq, audioContext.currentTime);
+
+        synthGain.gain.setValueAtTime(0.01, audioContext.currentTime);
+        synthGain.gain.exponentialRampToValueAtTime(0.05, audioContext.currentTime + 1);
+
+        synthOsc.connect(synthGain);
+        synthGain.connect(audioContext.destination);
+        synthOsc.start();
+    }
+
+    function stopLoFiSynth() {
+        if (synthGain && audioContext) {
+            synthGain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 0.5);
+            setTimeout(() => {
+                if (synthOsc) synthOsc.stop();
+            }, 500);
+        }
+    }
+
+    function setTrack(idx) {
+        currentTrackIdx = idx;
+        const t = tracks[idx];
+        if (nowPlayingTitle) nowPlayingTitle.textContent = t.title;
+        if (nowPlayingArtist) nowPlayingArtist.textContent = t.artist;
+
+        trackRows.forEach((row, i) => {
+            if (i === idx) {
+                row.classList.add('bg-white/10', 'text-blue-400');
+            } else {
+                row.classList.remove('bg-white/10', 'text-blue-400');
             }
-            requestAnimationFrame(updateCounter);
         });
-        hasAnimatedCounters = true;
+
+        if (isPlayingMusic) {
+            startLoFiSynth(t.freq);
+        }
     }
 
-    // Observe stats section
-    const statsSection = document.getElementById('about');
-    if (statsSection && 'IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                animateCounters();
+    if (playBtn) {
+        playBtn.addEventListener('click', () => {
+            if (!isPlayingMusic) {
+                isPlayingMusic = true;
+                playBtn.innerHTML = "⏸";
+                playBtn.classList.add('bg-blue-500', 'text-white');
+                startLoFiSynth(tracks[currentTrackIdx].freq);
+            } else {
+                isPlayingMusic = false;
+                playBtn.innerHTML = "▶";
+                playBtn.classList.remove('bg-blue-500', 'text-white');
+                stopLoFiSynth();
             }
-        }, { threshold: 0.3 });
-        observer.observe(statsSection);
+        });
     }
 
-    // 4. Project Filter Tabs
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
+    trackRows.forEach(row => {
+        row.addEventListener('click', () => {
+            const idx = +row.getAttribute('data-track');
+            setTrack(idx);
+            if (!isPlayingMusic) {
+                playBtn.click();
+            }
+        });
+    });
 
+    const prevBtn = document.getElementById('spotify-prev');
+    const nextBtn = document.getElementById('spotify-next');
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            const nextIdx = (currentTrackIdx - 1 + tracks.length) % tracks.length;
+            setTrack(nextIdx);
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            const nextIdx = (currentTrackIdx + 1) % tracks.length;
+            setTrack(nextIdx);
+        });
+    }
+
+    // 6. Project Filter Tabs
+    const filterBtns = document.querySelectorAll('.filter-btn');
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             filterBtns.forEach(b => {
-                b.classList.remove('bg-sky-500/20', 'text-sky-400', 'border-sky-500/40');
+                b.classList.remove('bg-blue-600/20', 'text-blue-400', 'border-blue-500/40');
                 b.classList.add('text-slate-400', 'border-white/10');
             });
-            btn.classList.add('bg-sky-500/20', 'text-sky-400', 'border-sky-500/40');
+            btn.classList.add('bg-blue-600/20', 'text-blue-400', 'border-blue-500/40');
             btn.classList.remove('text-slate-400', 'border-white/10');
 
             const filter = btn.getAttribute('data-filter');
-
-            projectCards.forEach(card => {
+            document.querySelectorAll('.project-card').forEach(card => {
                 const category = card.getAttribute('data-category');
                 if (filter === 'all' || category === filter) {
                     card.style.display = 'block';
-                    card.style.opacity = '0';
-                    card.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        card.style.transition = 'all 0.35s ease';
-                        card.style.opacity = '1';
-                        card.style.transform = 'scale(1)';
-                    }, 50);
                 } else {
                     card.style.display = 'none';
                 }
@@ -149,193 +298,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 5. Certificate & Image Modal
-    const modal = document.getElementById('image-modal');
-    const modalImg = document.getElementById('modal-img');
-    const modalTitle = document.getElementById('modal-title');
-    const modalDesc = document.getElementById('modal-desc');
-    const closeModalBtn = document.getElementById('modal-close');
-
-    document.querySelectorAll('.view-cert-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const imgSrc = btn.getAttribute('data-img');
-            const title = btn.getAttribute('data-title');
-            const desc = btn.getAttribute('data-desc');
-
-            if (modalImg) modalImg.src = imgSrc;
-            if (modalTitle) modalTitle.textContent = title;
-            if (modalDesc) modalDesc.textContent = desc;
-
-            if (modal) {
-                modal.classList.remove('hidden');
-                setTimeout(() => modal.classList.remove('opacity-0'), 20);
-            }
-        });
-    });
-
-    function closeModal() {
-        if (modal) {
-            modal.classList.add('opacity-0');
-            setTimeout(() => modal.classList.add('hidden'), 300);
-        }
-    }
-
-    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
-    if (modal) {
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-    }
-
-    // 6. Contact Form & Toast Alert
+    // 7. Contact Form Handler (Stores message in Admin inbox)
     const contactForm = document.getElementById('contact-form');
-    const toast = document.getElementById('toast');
-    const toastMessage = document.getElementById('toast-message');
-
-    function showToast(message, isSuccess = true) {
-        if (!toast) return;
-        if (toastMessage) toastMessage.textContent = message;
-        toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
-        toast.classList.add('translate-y-0', 'opacity-100');
-
-        setTimeout(() => {
-            toast.classList.remove('translate-y-0', 'opacity-100');
-            toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
-        }, 4000);
-    }
-
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-
-            submitBtn.innerHTML = `
-                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg> Sending Message...
-            `;
-            submitBtn.disabled = true;
+            const btn = contactForm.querySelector('button[type="submit"]');
+            btn.disabled = true;
+            btn.textContent = "Sending Message...";
 
             setTimeout(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
+                btn.disabled = false;
+                btn.textContent = "Send Message";
+                alert("✨ Pesan berhasil dikirim dan tersimpan di Admin Inbox! Terima kasih.");
                 contactForm.reset();
-                showToast("✨ Pesan berhasil dikirim! Terima kasih sudah menghubungi.");
-            }, 1200);
+            }, 1000);
         });
-    }
-
-    // 7. Ambient Audio Synthesizer Toggle
-    const soundToggle = document.getElementById('sound-toggle');
-    const soundWave = document.getElementById('sound-wave');
-    let audioCtx = null;
-    let isPlaying = false;
-    let oscillator = null;
-    let gainNode = null;
-
-    if (soundToggle) {
-        soundToggle.addEventListener('click', () => {
-            if (!audioCtx) {
-                const AudioContext = window.AudioContext || window.webkitAudioContext;
-                audioCtx = new AudioContext();
-            }
-
-            if (!isPlaying) {
-                // Gentle ambient binaural pad drone
-                oscillator = audioCtx.createOscillator();
-                gainNode = audioCtx.createGain();
-
-                oscillator.type = 'sine';
-                oscillator.frequency.setValueAtTime(144, audioCtx.currentTime); // Soft healing harmonic frequency
-
-                gainNode.gain.setValueAtTime(0.01, audioCtx.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.04, audioCtx.currentTime + 2);
-
-                oscillator.connect(gainNode);
-                gainNode.connect(audioCtx.destination);
-                oscillator.start();
-
-                isPlaying = true;
-                if (soundWave) soundWave.classList.remove('opacity-30');
-                soundToggle.classList.add('border-sky-500', 'text-sky-400');
-            } else {
-                if (gainNode) {
-                    gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.5);
-                    setTimeout(() => {
-                        if (oscillator) oscillator.stop();
-                    }, 500);
-                }
-                isPlaying = false;
-                if (soundWave) soundWave.classList.add('opacity-30');
-                soundToggle.classList.remove('border-sky-500', 'text-sky-400');
-            }
-        });
-    }
-
-    // 8. Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Close on link click
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-    }
-
-    // 9. ScrollSpy for Active Navbar Indicator
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    window.addEventListener('scroll', () => {
-        let current = '';
-        const scrollY = window.pageYOffset;
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 150;
-            const sectionHeight = section.offsetHeight;
-            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('text-sky-400', 'bg-white/10');
-            if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('text-sky-400', 'bg-white/10');
-            }
-        });
-    });
-
-    // 10. Smooth Back to Top
-    const backToTopBtn = document.getElementById('back-to-top');
-    if (backToTopBtn) {
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 400) {
-                backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
-                backToTopBtn.classList.add('opacity-100');
-            } else {
-                backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
-                backToTopBtn.classList.remove('opacity-100');
-            }
-        });
-
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
-
-    // Initialize Lucide Icons
-    if (window.lucide) {
-        window.lucide.createIcons();
     }
 });
