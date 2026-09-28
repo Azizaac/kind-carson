@@ -1,0 +1,18 @@
+{
+  "author_name": "Developer",
+  "github_username": "",
+  "features": {
+    "github_trending": true,
+    "tech_news": true,
+    "crypto_market": true,
+    "daily_til": true,
+    "daily_quote": true
+  },
+  "git": {
+    "auto_push": true,
+    "remote": "origin",
+    "branch": "main",
+    "author_name": "Daily Digest Bot",
+    "author_email": "bot@users.noreply.github.com"
+  }
+}
