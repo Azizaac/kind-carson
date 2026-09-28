@@ -200,3 +200,29 @@ code, pre, .font-mono {
     backdrop-filter: blur(12px);
     transition: opacity 0.3s ease;
 }
+
+/* 🕷️ Spiderman Hanging & Swinging Keyframes */
+@keyframes webSwing {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(4deg); }
+    75% { transform: rotate(-4deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.animate-webSwing {
+    animation: webSwing 4.5s ease-in-out infinite;
+}
+
+@keyframes spideySwingBounce {
+    0% { transform: scale(1) rotate(0deg); }
+    20% { transform: scale(1.15) translateY(12px) rotate(10deg); }
+    40% { transform: scale(0.95) translateY(-8px) rotate(-10deg); }
+    60% { transform: scale(1.05) translateY(6px) rotate(5deg); }
+    80% { transform: scale(0.98) translateY(-2px) rotate(-2deg); }
+    100% { transform: scale(1) translateY(0) rotate(0deg); }
+}
+
+.animate-spideySwing {
+    animation: spideySwingBounce 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
