@@ -33,7 +33,7 @@ And use `cd -` to instantly flip between your current directory and the previous
 ---
 
 ### 🔥 GitHub Trending Spotlight
-- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 483,978**)
+- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 483,979**)
   > A collective list of free APIs
 
 - ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 456,431**)
@@ -45,7 +45,7 @@ And use `cd -` to instantly flip between your current directory and the previous
 - ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 390,703**)
   > The AI that really does things. Any OS. Any Platform. The lobster way. 🦞 
 
-- ⭐ [**nilbuild/developer-roadmap**](https://github.com/nilbuild/developer-roadmap) (`TypeScript` | **★ 368,382**)
+- ⭐ [**nilbuild/developer-roadmap**](https://github.com/nilbuild/developer-roadmap) (`TypeScript` | **★ 368,383**)
   > Interactive roadmaps, guides and other educational content to help developers grow in their careers.
 
 
@@ -53,10 +53,10 @@ And use `cd -` to instantly flip between your current directory and the previous
 
 ### 📰 Tech Radar Highlights
 #### 🌐 Hacker News Top Discussions
-- [**Parley: Federated, decentralised chat that speaks plain IRC**](https://git.mills.io/prologic/parley) · `101 pts` · *by davidcollantes*
-- [**AI companies in race to demonstrate their model most threatening to humanity**](https://thecivilian.co.nz/2026/09/27/ai-companies-in-fierce-arms-race-to-demonstrate-their-model-is-the-most-existentially-threatening-to-humanity/) · `163 pts` · *by ljewalsh*
-- [**Footguns with Postgres "at time zone 'UTC'"**](https://bookofrevenue.com/blog/6ab81e9a97a13f0001f7e4e1/postgres-at-time-zone-u-does-not-do-what-you-think-it-does) · `69 pts` · *by birdculture*
-- [**37,500 border drawings: a map of the world as people remember it**](https://www.habibicode.org/thedrawnworld) · `44 pts` · *by nicocarsui*
+- [**Parley: Federated, decentralised chat that speaks plain IRC**](https://git.mills.io/prologic/parley) · `105 pts` · *by davidcollantes*
+- [**AI companies in race to demonstrate their model most threatening to humanity**](https://thecivilian.co.nz/2026/09/27/ai-companies-in-fierce-arms-race-to-demonstrate-their-model-is-the-most-existentially-threatening-to-humanity/) · `181 pts` · *by ljewalsh*
+- [**37,500 border drawings: a map of the world as people remember it**](https://www.habibicode.org/thedrawnworld) · `46 pts` · *by nicocarsui*
+- [**Footguns with Postgres "at time zone 'UTC'"**](https://bookofrevenue.com/blog/6ab81e9a97a13f0001f7e4e1/postgres-at-time-zone-u-does-not-do-what-you-think-it-does) · `70 pts` · *by birdculture*
 
 #### ✍️ Dev.to Trending Community Reads
 - [**Implementation is where judgements go to become invisible**](https://dev.to/tom_jones_230c4659491adcd/implementation-is-where-judgements-go-to-become-invisible-4p1h) `#testing` `#programming` `#discuss` · *by Tom Jones*
@@ -69,10 +69,10 @@ And use `cd -` to instantly flip between your current directory and the previous
 ### 📊 Crypto & Market Pulse
 | Asset | Symbol | Price (USD) | 24h Trend |
 | :--- | :--- | :--- | :--- |
-| **Bitcoin** | `BTC` | $83,381.00 | 🔴 `-1.88%` |
-| **Ethereum** | `ETH` | $2,681.01 | 🔴 `-1.23%` |
-| **Solana** | `SOL` | $119.54 | 🔴 `-3.68%` |
-| **BNB** | `BNB` | $768.50 | 🔴 `-1.69%` |
+| **Bitcoin** | `BTC` | $83,279.00 | 🔴 `-2.01%` |
+| **Ethereum** | `ETH` | $2,675.64 | 🔴 `-1.44%` |
+| **Solana** | `SOL` | $119.48 | 🔴 `-3.74%` |
+| **BNB** | `BNB` | $767.35 | 🔴 `-1.92%` |
 
 ---
 
