@@ -53,10 +53,10 @@ And use `cd -` to instantly flip between your current directory and the previous
 
 ### 📰 Tech Radar Highlights
 #### 🌐 Hacker News Top Discussions
-- [**Parley: Federated, decentralised chat that speaks plain IRC**](https://git.mills.io/prologic/parley) · `102 pts` · *by davidcollantes*
-- [**AI companies in race to demonstrate their model most threatening to humanity**](https://thecivilian.co.nz/2026/09/27/ai-companies-in-fierce-arms-race-to-demonstrate-their-model-is-the-most-existentially-threatening-to-humanity/) · `160 pts` · *by ljewalsh*
+- [**Parley: Federated, decentralised chat that speaks plain IRC**](https://git.mills.io/prologic/parley) · `101 pts` · *by davidcollantes*
+- [**AI companies in race to demonstrate their model most threatening to humanity**](https://thecivilian.co.nz/2026/09/27/ai-companies-in-fierce-arms-race-to-demonstrate-their-model-is-the-most-existentially-threatening-to-humanity/) · `163 pts` · *by ljewalsh*
 - [**Footguns with Postgres "at time zone 'UTC'"**](https://bookofrevenue.com/blog/6ab81e9a97a13f0001f7e4e1/postgres-at-time-zone-u-does-not-do-what-you-think-it-does) · `69 pts` · *by birdculture*
-- [**Owed a billion dollars in Nvidia stock**](https://colo.to/nvidia-stock-narrative.html) · `822 pts` · *by Eric_Gullichsen*
+- [**37,500 border drawings: a map of the world as people remember it**](https://www.habibicode.org/thedrawnworld) · `44 pts` · *by nicocarsui*
 
 #### ✍️ Dev.to Trending Community Reads
 - [**Implementation is where judgements go to become invisible**](https://dev.to/tom_jones_230c4659491adcd/implementation-is-where-judgements-go-to-become-invisible-4p1h) `#testing` `#programming` `#discuss` · *by Tom Jones*
@@ -69,10 +69,10 @@ And use `cd -` to instantly flip between your current directory and the previous
 ### 📊 Crypto & Market Pulse
 | Asset | Symbol | Price (USD) | 24h Trend |
 | :--- | :--- | :--- | :--- |
-| **Bitcoin** | `BTC` | $83,322.00 | 🔴 `-1.92%` |
-| **Ethereum** | `ETH` | $2,679.74 | 🔴 `-1.27%` |
-| **Solana** | `SOL` | $119.42 | 🔴 `-3.73%` |
-| **BNB** | `BNB` | $768.15 | 🔴 `-1.72%` |
+| **Bitcoin** | `BTC` | $83,381.00 | 🔴 `-1.88%` |
+| **Ethereum** | `ETH` | $2,681.01 | 🔴 `-1.23%` |
+| **Solana** | `SOL` | $119.54 | 🔴 `-3.68%` |
+| **BNB** | `BNB` | $768.50 | 🔴 `-1.69%` |
 
 ---
 
@@ -88,5 +88,5 @@ And use `cd -` to instantly flip between your current directory and the previous
 ---
 
 <div align="center">
-<sub>Engineered with ❤️ by <b>Developer</b> · Automated Git Activity & Daily Tech Digest</sub>
+<sub>Engineered with ❤️ by <b>Azizaac</b> · Automated Git Activity & Daily Tech Digest</sub>
 </div>
