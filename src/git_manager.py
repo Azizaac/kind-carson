@@ -35,6 +35,12 @@ def commit_and_push(date_str: str, config: dict) -> bool:
     author_name = git_cfg.get("author_name", "Daily Digest Bot")
     author_email = git_cfg.get("author_email", "bot@users.noreply.github.com")
 
+    # 0. Sync with remote before committing if remote exists
+    code, remotes, _ = run_cmd(["git", "remote"])
+    if remote in remotes.split():
+        print(f"[GIT] Syncing latest commits from {remote}/{branch}...")
+        run_cmd(["git", "pull", remote, branch, "--rebase", "--autostash"])
+
     # 1. Stage changes
     print("[GIT] Staging changes...")
     code, out, err = run_cmd(["git", "add", "."])
@@ -62,8 +68,6 @@ def commit_and_push(date_str: str, config: dict) -> bool:
     # 3. Push if enabled
     if auto_push:
         print(f"[GIT] Pushing to {remote} {branch}...")
-        # Check if remote exists
-        code, remotes, _ = run_cmd(["git", "remote"])
         if remote not in remotes.split():
             print(f"[WARN] Remote '{remote}' is not configured yet. Skipping git push.")
             print("[TIP] Set your remote with: git remote add origin <your-repo-url>")
@@ -71,13 +75,17 @@ def commit_and_push(date_str: str, config: dict) -> bool:
 
         code, out, err = run_cmd(["git", "push", remote, branch])
         if code != 0:
-            # Maybe local branch name is different (e.g. master vs main)
-            # Try pushing current HEAD to remote branch
-            code, out, err = run_cmd(["git", "push", remote, f"HEAD:{branch}"])
+            # Try pulling with rebase in case remote updated meanwhile
+            print("[GIT] Push rejected. Attempting rebase and retry...")
+            run_cmd(["git", "pull", remote, branch, "--rebase"])
+            code, out, err = run_cmd(["git", "push", remote, branch])
             if code != 0:
-                print(f"[ERROR] git push failed:\n{err or out}")
-                print("[TIP] If pushing for the first time, make sure your SSH key or Personal Access Token is configured.")
-                return False
+                # Try pushing current HEAD to remote branch
+                code, out, err = run_cmd(["git", "push", remote, f"HEAD:{branch}"])
+
+        if code != 0:
+            print(f"[ERROR] git push failed:\n{err or out}")
+            return False
 
         print(f"[OK] Successfully pushed to {remote}/{branch}!")
 
