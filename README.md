@@ -4,56 +4,47 @@
 
 ![Daily Updates](https://img.shields.io/badge/Daily_Update-Active-brightgreen?style=for-the-badge&logo=github-actions)
 ![Curated Content](https://img.shields.io/badge/Content-Tech_Radar_%26_TIL-blue?style=for-the-badge)
-![Status](https://img.shields.io/badge/Last_Sync-2026-10-11-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Last_Sync-2026-10-12-orange?style=for-the-badge)
 
 <p align="center">
   <b>A curated daily engineering digest, open-source radar, and Today I Learned (TIL) knowledge base.</b><br>
   <i>Maintained automatically via aaPanel / VPS cron & local runner.</i>
 </p>
 
-> *" Make it work, make it right, make it fast. "*  
-> — **Kent Beck**
+> *" Premature optimization is the root of all evil. "*  
+> — **Donald Knuth**
 
 </div>
 
 ---
 
-## 📌 Latest Digest Snapshot (`2026-10-11`)
+## 📌 Latest Digest Snapshot (`2026-10-12`)
 
-### 💡 Today I Learned: Docker Best Practices
-#### Use Multi-Stage Builds to Minimize Image Attack Surface
+### 💡 Today I Learned: Architecture & API
+#### Design Idempotent APIs with `Idempotency-Key`
 
-Never ship compilers, build tools, or source code caches into production containers:
-```dockerfile
-# Stage 1: Build
-FROM golang:1.22-alpine AS builder
-WORKDIR /app
-COPY . .
-RUN go build -ldflags="-s -w" -o server .
-
-# Stage 2: Minimal Runtime
-FROM scratch
-COPY --from=builder /app/server /server
-ENTRYPOINT ["/server"]
-```
-Result: Image shrinks from 800MB+ to under 15MB with minimal CVE vulnerabilities.
+Payment gateways and state-mutating POST endpoints must prevent duplicate execution due to client retries or network drops.
+Accept a client-generated UUID in the `Idempotency-Key` header:
+1. Cache the request status in Redis: `SET key uuid NX EX 86400`.
+2. If key exists, return the cached previous response immediately.
+3. If new, process the request, store the response in Redis, and return.
 
 ---
 
 ### 🔥 GitHub Trending Spotlight
-- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 487,317**)
+- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 487,659**)
   > A collective list of free APIs
 
-- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 456,840**)
+- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 456,903**)
   > freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.
 
-- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 398,707**)
+- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 398,785**)
   > :books: Freely available programming books
 
-- ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 391,640**)
+- ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 391,712**)
   > The AI that really does things. Any OS. Any Platform. The lobster way. 🦞 
 
-- ⭐ [**nilbuild/developer-roadmap**](https://github.com/nilbuild/developer-roadmap) (`TypeScript` | **★ 369,113**)
+- ⭐ [**nilbuild/developer-roadmap**](https://github.com/nilbuild/developer-roadmap) (`TypeScript` | **★ 369,181**)
   > Interactive roadmaps, guides and other educational content to help developers grow in their careers.
 
 
@@ -61,26 +52,26 @@ Result: Image shrinks from 800MB+ to under 15MB with minimal CVE vulnerabilities
 
 ### 📰 Tech Radar Highlights
 #### 🌐 Hacker News Top Discussions
-- [**WallHop – 12ft.io is gone, so I built a replacement**](https://wallhop.io/) · `164 pts` · *by TheWaffleHax*
-- [**Build your own decision model**](https://nishtahir.com/build-your-own-decision-model/) · `165 pts` · *by softwaredoug*
-- [**2D Vehicles**](https://patkerr.co.uk/2d-vehicles/) · `390 pts` · *by Michelangelo11*
-- [**A city-building game in which the city would prefer you didn't**](https://housing.over.pizza/) · `230 pts` · *by JumpCrisscross*
+- [**Fingerprints are the new cookies**](https://royfish.dev/fingerprints-are-the-new-cookies) · `166 pts` · *by royfish*
+- [**Whatever became of holography? (2011)**](https://www.americanscientist.org/article/whatever-became-of-holography) · `96 pts` · *by cainxinth*
+- [**Total Annihilation, rebuilt for modern computers**](https://nanolathe.gg) · `417 pts` · *by jttnr*
+- [**Calculus with Julia**](https://jverzani.github.io/CalculusWithJuliaNotes.jl/) · `29 pts` · *by subset*
 
 #### ✍️ Dev.to Trending Community Reads
-- [**What Do You Drink While You Work?**](https://dev.to/xulingfeng/what-do-you-drink-while-you-work-17bm) `#discuss` `#career` `#programming` · *by xulingfeng*
-- [**How Do We Extract the “Why” from a PR into a CHANGELOG with Jev? 🤔**](https://dev.to/nyaomaru/how-do-we-extract-the-why-from-a-pr-into-a-changelog-with-jev-52pk) `#opensource` `#githubactions` `#ai` · *by nyaomaru*
-- [**Git Isn't a Diff Tracker: How Blobs, Trees, DAG Commits, and the Index Actually Work Under the Hood**](https://dev.to/smtahosin/git-isnt-a-diff-tracker-how-blobs-trees-dag-commits-and-the-index-actually-work-under-the-hood-19eo) `#git` `#programming` `#devops` · *by S M Tahosin*
-- [**WildProof: Go Outside With a Question, Come Back With Evidence**](https://dev.to/dj29/wildproof-go-outside-with-a-question-come-back-with-evidence-574e) `#devchallenge` `#hf26challenge` `#opensource` · *by Dhruv Jani*
+- [**🐾 DEV Pet Corner #1: Show Us Your Pets!**](https://dev.to/hemapriya_kanagala/dev-pet-corner-1-show-us-your-pets-39n6) `#discuss` `#community` `#pets` · *by Hemapriya Kanagala*
+- [**Georgian Language Benchmark: Two Biggest AI Labs Clash in a Language That Doesn't Play by Anyone's Rules**](https://dev.to/georgekobaidze/georgian-language-benchmark-two-biggest-ai-labs-clash-in-a-language-that-doesnt-play-by-anyones-5b22) `#devchallenge` `#kagglechallenge` `#ai` · *by Giorgi Kobaidze*
+- [**I Built an AI Gardening App That Tells Me to Put the Laptop Down**](https://dev.to/shubhradev/i-built-an-ai-gardening-app-that-tells-me-to-put-the-laptop-down-1o93) `#devchallenge` `#hf26challenge` `#gemma` · *by Shubhra Pokhariya*
+- [**ShutterHunt : A Photographic Quest That Gets You Outside**](https://dev.to/trickell/shutterhunt-a-photographic-quest-that-gets-you-outside-1ahb) `#devchallenge` `#hf26challenge` `#gemmachallenge` · *by John A Madrigal*
 
 ---
 
 ### 📊 Crypto & Market Pulse
 | Asset | Symbol | Price (USD) | 24h Trend |
 | :--- | :--- | :--- | :--- |
-| **Bitcoin** | `BTC` | $82,787.00 | 🟢 `+0.32%` |
-| **Ethereum** | `ETH` | $2,499.31 | 🟢 `+0.41%` |
-| **Solana** | `SOL` | $109.19 | 🔴 `-0.38%` |
-| **BNB** | `BNB` | $744.95 | 🟢 `+0.05%` |
+| **Bitcoin** | `BTC` | $83,449.00 | 🟢 `+0.77%` |
+| **Ethereum** | `ETH` | $2,541.56 | 🟢 `+1.65%` |
+| **Solana** | `SOL` | $111.44 | 🟢 `+1.99%` |
+| **BNB** | `BNB` | $750.17 | 🟢 `+0.56%` |
 
 ---
 
@@ -89,6 +80,7 @@ Result: Image shrinks from 800MB+ to under 15MB with minimal CVE vulnerabilities
 <details>
 <summary><b>Click to expand past digests</b></summary>
 
+- 📄 [2026-10-12](digest/2026/10/2026-10-12.md)
 - 📄 [2026-10-11](digest/2026/10/2026-10-11.md)
 - 📄 [2026-10-10](digest/2026/10/2026-10-10.md)
 - 📄 [2026-10-09](digest/2026/10/2026-10-09.md)
