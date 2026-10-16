@@ -4,50 +4,51 @@
 
 ![Daily Updates](https://img.shields.io/badge/Daily_Update-Active-brightgreen?style=for-the-badge&logo=github-actions)
 ![Curated Content](https://img.shields.io/badge/Content-Tech_Radar_%26_TIL-blue?style=for-the-badge)
-![Status](https://img.shields.io/badge/Last_Sync-2026-10-15-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Last_Sync-2026-10-16-orange?style=for-the-badge)
 
 <p align="center">
   <b>A curated daily engineering digest, open-source radar, and Today I Learned (TIL) knowledge base.</b><br>
   <i>Maintained automatically via aaPanel / VPS cron & local runner.</i>
 </p>
 
-> *" Talk is cheap. Show me the code. "*  
-> — **Linus Torvalds**
+> *" Simplicity is prerequisite for reliability. "*  
+> — **Edsger W. Dijkstra**
 
 </div>
 
 ---
 
-## 📌 Latest Digest Snapshot (`2026-10-15`)
+## 📌 Latest Digest Snapshot (`2026-10-16`)
 
-### 💡 Today I Learned: Git Pro Tip
-#### Git Worktree: Work on Multiple Branches Without Stashing
+### 💡 Today I Learned: Python Optimization
+#### Use `__slots__` to Slash Memory Usage in Class Instances
 
-Instead of stashing uncommitted changes or cloning the repo multiple times when an urgent bugfix arrives, use `git worktree`:
-```bash
-git worktree add ../hotfix-branch hotfix
-# Now you have an isolated directory linked to the hotfix branch!
-# When done:
-git worktree remove ../hotfix-branch
+When creating millions of lightweight objects, Python dictionaries (`__dict__`) add massive memory overhead. Define `__slots__`:
+```python
+class Coordinate:
+    __slots__ = ('x', 'y')
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
 ```
-This saves tons of context switching and avoids messing up your working tree.
+This prevents dynamic attribute creation and can reduce memory footprint by up to **60-70%**.
 
 ---
 
 ### 🔥 GitHub Trending Spotlight
-- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 488,815**)
+- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 489,164**)
   > A collective list of free APIs
 
-- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 457,068**)
+- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 457,129**)
   > freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.
 
-- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 399,059**)
+- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 399,146**)
   > :books: Freely available programming books
 
-- ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 392,045**)
+- ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 392,123**)
   > The AI that really does things. Any OS. Any Platform. The lobster way. 🦞 
 
-- ⭐ [**nilbuild/developer-roadmap**](https://github.com/nilbuild/developer-roadmap) (`TypeScript` | **★ 369,413**)
+- ⭐ [**nilbuild/developer-roadmap**](https://github.com/nilbuild/developer-roadmap) (`TypeScript` | **★ 369,493**)
   > Interactive roadmaps, guides and other educational content to help developers grow in their careers.
 
 
@@ -55,26 +56,26 @@ This saves tons of context switching and avoids messing up your working tree.
 
 ### 📰 Tech Radar Highlights
 #### 🌐 Hacker News Top Discussions
-- [**Things to know when you get cancer**](https://jjmaxwell4.com/writing/things-to-know-when-you-get-cancer/) · `893 pts` · *by jjmaxwell4*
-- [**OpenCode 2.0**](https://anoma.ly/notes/opencode-2-0/) · `366 pts` · *by gmays*
-- [**Tiny Little Office**](https://tinylittleoffice.com/) · `191 pts` · *by donohoe*
-- [**We’re releasing Jev 1.14.0 along with experimental features for dreamers**](https://typesafe.ai/blog/jev-1-14) · `210 pts` · *by emschwartz*
+- [**Muse Spark Open**](https://research.meta.ai/blog/muse-spark-open) · `659 pts` · *by bigwheels*
+- [**RPKI now protects 70% of internet routes**](https://ipinfo.io/blog/rpki-protects-70-internet-routes) · `55 pts` · *by emot*
+- [**Business accounts will consent to Meta scraping their websites Starting Oct. 30**](https://www.niemanlab.org/2026/10/metas-new-commercial-terms-will-allow-the-scraping-of-news-sites-legal-experts-say/) · `64 pts` · *by 0in*
+- [**Woman arrested after blocking delivery robot in Center City Philadelphia**](https://6abc.com/post/woman-arrested-blocking-delivery-robot-center-city-philadelphia-confrontation/19941323/) · `36 pts` · *by snarky-comments*
 
 #### ✍️ Dev.to Trending Community Reads
-- [**Your Browser Can Do WHAT?! 5 AI Features That Actually Work**](https://dev.to/sylwia-lask/your-browser-can-do-what-5-ai-features-that-actually-work-1blb) `#ai` `#react` `#javascript` · *by Sylwia Laskowska*
-- [**The minimum you need to know about GitHub Actions**](https://dev.to/julies1/the-minimum-you-need-to-know-about-github-actions-6p7) `#github` `#beginners` `#automation` · *by Julie*
-- [**Building Better Agents through End-to-End Evals**](https://dev.to/dailycontext/building-better-agents-through-end-to-end-evals-pgh) `#ai` `#agents` `#evals` · *by Ryan Stevens*
-- [**Design for Churn**](https://dev.to/dailycontext/design-for-churn-5c6h) `#aie` `#design` `#churn` · *by Ben Halpern*
+- [**I built a lie detector for AI coding agents. Then I read the rules.**](https://dev.to/dannwaneri/i-built-a-lie-detector-for-ai-coding-agents-then-i-read-the-rules-1hhb) `#ai` `#cloudflare` `#git` · *by Daniel Nwaneri*
+- [**I Vibe-Coded My Way Out of Angular Upgrades**](https://dev.to/gramli/i-vibe-coded-my-way-out-of-angular-upgrades-4fkh) `#ai` `#vibecoding` `#angular` · *by Daniel Balcarek*
+- [**Natural Languages Have Design Trade-offs Too: Georgian Is Dynamically Typed, English Is Statically Typed**](https://dev.to/georgekobaidze/natural-languages-have-design-trade-offs-too-georgian-is-dynamically-typed-english-is-statically-emi) `#programming` `#writing` `#design` · *by Giorgi Kobaidze*
+- [**I Built an Open-Weight AI That Prices Etsy Shops, On Your Laptop**](https://dev.to/sarvar_04/i-built-an-open-weight-ai-that-prices-etsy-shops-on-your-laptop-24dk) `#devchallenge` `#hf26challenge` `#tabpfn` · *by Sarvar Nadaf*
 
 ---
 
 ### 📊 Crypto & Market Pulse
 | Asset | Symbol | Price (USD) | 24h Trend |
 | :--- | :--- | :--- | :--- |
-| **Bitcoin** | `BTC` | $81,213.00 | 🔴 `-2.98%` |
-| **Ethereum** | `ETH` | $2,372.03 | 🔴 `-5.64%` |
-| **Solana** | `SOL` | $102.59 | 🔴 `-4.66%` |
-| **BNB** | `BNB` | $718.88 | 🔴 `-3.48%` |
+| **Bitcoin** | `BTC` | $82,008.00 | 🟢 `+1.10%` |
+| **Ethereum** | `ETH` | $2,438.41 | 🟢 `+3.14%` |
+| **Solana** | `SOL` | $105.31 | 🟢 `+3.01%` |
+| **BNB** | `BNB` | $727.83 | 🟢 `+1.32%` |
 
 ---
 
@@ -83,6 +84,7 @@ This saves tons of context switching and avoids messing up your working tree.
 <details>
 <summary><b>Click to expand past digests</b></summary>
 
+- 📄 [2026-10-16](digest/2026/10/2026-10-16.md)
 - 📄 [2026-10-15](digest/2026/10/2026-10-15.md)
 - 📄 [2026-10-14](digest/2026/10/2026-10-14.md)
 - 📄 [2026-10-13](digest/2026/10/2026-10-13.md)
@@ -97,7 +99,6 @@ This saves tons of context switching and avoids messing up your working tree.
 - 📄 [2026-10-04](digest/2026/10/2026-10-04.md)
 - 📄 [2026-10-03](digest/2026/10/2026-10-03.md)
 - 📄 [2026-10-02](digest/2026/10/2026-10-02.md)
-- 📄 [2026-10-01](digest/2026/10/2026-10-01.md)
 
 </details>
 
