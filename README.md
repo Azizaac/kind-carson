@@ -4,48 +4,52 @@
 
 ![Daily Updates](https://img.shields.io/badge/Daily_Update-Active-brightgreen?style=for-the-badge&logo=github-actions)
 ![Curated Content](https://img.shields.io/badge/Content-Tech_Radar_%26_TIL-blue?style=for-the-badge)
-![Status](https://img.shields.io/badge/Last_Sync-2026-10-17-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Last_Sync-2026-10-18-orange?style=for-the-badge)
 
 <p align="center">
   <b>A curated daily engineering digest, open-source radar, and Today I Learned (TIL) knowledge base.</b><br>
   <i>Maintained automatically via aaPanel / VPS cron & local runner.</i>
 </p>
 
-> *" Any fool can write code that a computer can understand. Good programmers write code that humans can understand. "*  
-> — **Martin Fowler**
+> *" First, solve the problem. Then, write the code. "*  
+> — **John Johnson**
 
 </div>
 
 ---
 
-## 📌 Latest Digest Snapshot (`2026-10-17`)
+## 📌 Latest Digest Snapshot (`2026-10-18`)
 
-### 💡 Today I Learned: Linux & DevOps
-#### Inspect Open Network Ports Without Installing `netstat`
+### 💡 Today I Learned: Database & SQL
+#### Avoid `OFFSET` for Large Pagination (Keyset / Cursor Pagination)
 
-On modern Linux distributions, `ss` is the modern replacement for deprecated `netstat`:
-```bash
-# -t (TCP), -u (UDP), -l (Listening), -p (Process), -n (Numeric ports)
-sudo ss -tulpn
+`LIMIT 20 OFFSET 100000` forces the database engine to scan 100,020 rows and discard the first 100,000, causing severe I/O bottlenecks.
+Instead, use **Keyset Pagination (Seek method)**:
+```sql
+SELECT id, title, created_at 
+FROM posts 
+WHERE id > 100000 
+ORDER BY id ASC 
+LIMIT 20;
 ```
-It is much faster than `netstat` because it reads socket stats directly from kernel space via netlink.
+This utilizes the B-Tree primary index directly in O(log N) lookup time.
 
 ---
 
 ### 🔥 GitHub Trending Spotlight
-- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 489,510**)
+- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 489,814**)
   > A collective list of free APIs
 
-- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 457,193**)
+- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 457,329**)
   > freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.
 
-- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 399,233**)
+- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 399,364**)
   > :books: Freely available programming books
 
-- ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 392,210**)
+- ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 392,291**)
   > The AI that really does things. Any OS. Any Platform. The lobster way. 🦞 
 
-- ⭐ [**nilbuild/developer-roadmap**](https://github.com/nilbuild/developer-roadmap) (`TypeScript` | **★ 369,579**)
+- ⭐ [**nilbuild/developer-roadmap**](https://github.com/nilbuild/developer-roadmap) (`TypeScript` | **★ 369,705**)
   > Interactive roadmaps, guides and other educational content to help developers grow in their careers.
 
 
@@ -53,26 +57,26 @@ It is much faster than `netstat` because it reads socket stats directly from ker
 
 ### 📰 Tech Radar Highlights
 #### 🌐 Hacker News Top Discussions
-- [**Tesla Roadster**](https://www.tesla.com/roadster) · `1235 pts` · *by shekhar101*
-- [**Butlerian Jihad**](https://dune.fandom.com/wiki/Butlerian_Jihad) · `57 pts` · *by wetwater*
-- [**Llama.cpp on a jailbroken PS5: run any GGUF model natively on the console**](https://github.com/cobanov/PS5LM) · `215 pts` · *by Anon84*
-- [**Claude reveals ECDSA curve origins**](https://www.anthropic.com/research/ecdsa-curve-origins) · `716 pts` · *by ahlCVA*
+- [**Zuckerberg's Meta Takes Down No Kings Instagram During Protest Day**](https://meidasnews.com/news/zuckerbergs-meta-takes-down-no-kings-instagram-during-massive-protest-day) · `361 pts` · *by DeepLogin*
+- [**Bleached corals thrive within days when touching healthy neighbour**](https://www.nature.com/articles/d41586-026-03266-x) · `343 pts` · *by alkyon*
+- [**Lean Now Ships with Verified Kernels**](https://leodemoura.github.io/blog/2026-10-15-lean-now-ships-with-verified-kernels/) · `27 pts` · *by matt_d*
+- [**Dam removals are bringing fish back across the northeastern United States**](https://www.smithsonianmag.com/science-nature/dam-removals-are-bringing-fish-back-across-the-northeastern-united-states-striking-down-one-tiny-barrier-at-a-time-180989679/) · `219 pts` · *by sohkamyung*
 
 #### ✍️ Dev.to Trending Community Reads
-- [**Dev Opportunity Radar #21: $500K Y Combinator Funding, Bolt Builders Week, and AI Safety Research Residency**](https://dev.to/devengers/dev-opportunity-radar-21-500k-y-combinator-funding-bolt-builders-week-and-ai-safety-research-12b8) `#discuss` `#community` `#opportunities` · *by Hemapriya Kanagala*
-- [**What Are Your Chances of Surviving Resident Evil Based on Your Tech Job?**](https://dev.to/xulingfeng/what-are-your-chances-of-surviving-resident-evil-based-on-your-tech-job-4b9o) `#discuss` `#career` `#jokes` · *by xulingfeng*
-- [**What was your win this week?!**](https://dev.to/devteam/what-was-your-win-this-week-36am) `#weeklyretro` · *by Jess Lee*
-- [**Don't Assume Your Cloud T4 Runs at Spec: Gemma 4 Decode Falls 7% as the Card Warms**](https://dev.to/gde/dont-assume-your-cloud-t4-runs-at-spec-gemma-4-decode-falls-7-as-the-card-warms-3fd3) `#nvidia` `#googlecloud` `#llm` · *by xbill*
+- [**10 Prompting Techniques My Deep Learning Exam Taught Me (That I Actually Use Now)**](https://dev.to/dj29/10-prompting-techniques-my-deep-learning-exam-taught-me-that-i-actually-use-now-43h0) `#promptengineering` `#ai` `#discuss` · *by Dhruv Jani*
+- [**AI Took Me to Three Stages. I Still Don't Like Public Speaking.**](https://dev.to/earlgreyhot1701d/ai-took-me-to-three-stages-i-still-dont-like-public-speaking-1g38) `#ai` `#career` `#learning` · *by Earl Grey*
+- [**Déjà vu, but billable**](https://dev.to/lewisawe/deja-vu-but-billable-4jhl) `#devchallenge` `#hf26challenge` `#render` · *by Lewis Sawe*
+- [**AI Made Your Easy Work Free. That Made You More Valuable.**](https://dev.to/james_anderson_h/ai-made-your-easy-work-free-that-made-you-more-valuable-413f) `#ai` `#career` `#softwareengineering` · *by James Anderson*
 
 ---
 
 ### 📊 Crypto & Market Pulse
 | Asset | Symbol | Price (USD) | 24h Trend |
 | :--- | :--- | :--- | :--- |
-| **Bitcoin** | `BTC` | $81,414.00 | 🔴 `-0.68%` |
-| **Ethereum** | `ETH` | $2,419.79 | 🔴 `-0.73%` |
-| **Solana** | `SOL` | $104.44 | 🔴 `-0.78%` |
-| **BNB** | `BNB` | $720.66 | 🔴 `-1.02%` |
+| **Bitcoin** | `BTC` | $81,732.00 | 🟢 `+0.43%` |
+| **Ethereum** | `ETH` | $2,414.35 | 🔴 `-0.20%` |
+| **Solana** | `SOL` | $103.86 | 🔴 `-0.54%` |
+| **BNB** | `BNB` | $720.88 | 🟢 `+0.06%` |
 
 ---
 
@@ -81,6 +85,7 @@ It is much faster than `netstat` because it reads socket stats directly from ker
 <details>
 <summary><b>Click to expand past digests</b></summary>
 
+- 📄 [2026-10-18](digest/2026/10/2026-10-18.md)
 - 📄 [2026-10-17](digest/2026/10/2026-10-17.md)
 - 📄 [2026-10-16](digest/2026/10/2026-10-16.md)
 - 📄 [2026-10-15](digest/2026/10/2026-10-15.md)
@@ -95,7 +100,6 @@ It is much faster than `netstat` because it reads socket stats directly from ker
 - 📄 [2026-10-06](digest/2026/10/2026-10-06.md)
 - 📄 [2026-10-05](digest/2026/10/2026-10-05.md)
 - 📄 [2026-10-04](digest/2026/10/2026-10-04.md)
-- 📄 [2026-10-03](digest/2026/10/2026-10-03.md)
 
 </details>
 
