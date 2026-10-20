@@ -4,56 +4,47 @@
 
 ![Daily Updates](https://img.shields.io/badge/Daily_Update-Active-brightgreen?style=for-the-badge&logo=github-actions)
 ![Curated Content](https://img.shields.io/badge/Content-Tech_Radar_%26_TIL-blue?style=for-the-badge)
-![Status](https://img.shields.io/badge/Last_Sync-2026-10-19-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Last_Sync-2026-10-20-orange?style=for-the-badge)
 
 <p align="center">
   <b>A curated daily engineering digest, open-source radar, and Today I Learned (TIL) knowledge base.</b><br>
   <i>Maintained automatically via aaPanel / VPS cron & local runner.</i>
 </p>
 
-> *" Make it work, make it right, make it fast. "*  
-> — **Kent Beck**
+> *" Premature optimization is the root of all evil. "*  
+> — **Donald Knuth**
 
 </div>
 
 ---
 
-## 📌 Latest Digest Snapshot (`2026-10-19`)
+## 📌 Latest Digest Snapshot (`2026-10-20`)
 
-### 💡 Today I Learned: Docker Best Practices
-#### Use Multi-Stage Builds to Minimize Image Attack Surface
+### 💡 Today I Learned: Architecture & API
+#### Design Idempotent APIs with `Idempotency-Key`
 
-Never ship compilers, build tools, or source code caches into production containers:
-```dockerfile
-# Stage 1: Build
-FROM golang:1.22-alpine AS builder
-WORKDIR /app
-COPY . .
-RUN go build -ldflags="-s -w" -o server .
-
-# Stage 2: Minimal Runtime
-FROM scratch
-COPY --from=builder /app/server /server
-ENTRYPOINT ["/server"]
-```
-Result: Image shrinks from 800MB+ to under 15MB with minimal CVE vulnerabilities.
+Payment gateways and state-mutating POST endpoints must prevent duplicate execution due to client retries or network drops.
+Accept a client-generated UUID in the `Idempotency-Key` header:
+1. Cache the request status in Redis: `SET key uuid NX EX 86400`.
+2. If key exists, return the cached previous response immediately.
+3. If new, process the request, store the response in Redis, and return.
 
 ---
 
 ### 🔥 GitHub Trending Spotlight
-- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 490,123**)
+- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 490,567**)
   > A collective list of free APIs
 
-- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 457,449**)
+- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 457,536**)
   > freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.
 
-- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 399,498**)
+- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 399,604**)
   > :books: Freely available programming books
 
-- ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 392,409**)
+- ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 392,784**)
   > The AI that really does things. Any OS. Any Platform. The lobster way. 🦞 
 
-- ⭐ [**nilbuild/developer-roadmap**](https://github.com/nilbuild/developer-roadmap) (`TypeScript` | **★ 369,806**)
+- ⭐ [**nilbuild/developer-roadmap**](https://github.com/nilbuild/developer-roadmap) (`TypeScript` | **★ 369,918**)
   > Interactive roadmaps, guides and other educational content to help developers grow in their careers.
 
 
@@ -61,26 +52,26 @@ Result: Image shrinks from 800MB+ to under 15MB with minimal CVE vulnerabilities
 
 ### 📰 Tech Radar Highlights
 #### 🌐 Hacker News Top Discussions
-- [**Hybrid Reasoning Agents: LLM agents that think in latent space, act through text**](https://arxiv.org/abs/2610.18861) · `249 pts` · *by allinonai*
-- [**William Gibson and the trademarking of cyberspace**](https://colo.to/cyberspace.html) · `86 pts` · *by Eric_Gullichsen*
-- [**There's never been a better time to go into math (by: 3blue1brown) [video]**](https://www.youtube.com/watch?v=LKrwhjOI8Nc) · `212 pts` · *by mdp2021*
-- [**Superlite: A Faster Alternatie to Superpowers**](https://contextfirst.blog/superlite-hand-an-agent-a-spec/) · `6 pts` · *by iheatuchriswogu*
+- [**Lula supporters protest against Meta to denounce its 'electoral interference'**](https://efe.com/english/latest-news/2026-10-20/lula-supporters-protest-against-meta-to-denounce-its-electoral-interference/) · `202 pts` · *by jumpocelot*
+- [**MiniMax M3.1 Flash**](https://www.minimax.io/blog/minimax-m31f) · `402 pts` · *by jtg*
+- [**Novo Nordisk, Eli Lilly Report GLP-1 Signals of Slowed Biological Aging at ARDD**](https://trial.medpath.com/news/novo-nordisk-and-eli-lilly-report-glp-1-signals-of-slowed-biological-aging-at-ardd) · `27 pts` · *by hnburnsy*
+- [**I built a drone with only one motor [video]**](https://www.youtube.com/watch?v=Ndftcft6XhU) · `432 pts` · *by hakonjdjohnsen*
 
 #### ✍️ Dev.to Trending Community Reads
-- [**Promise Delivered: Welcome to the DEV Hall of Fame (65 Authors, 65 Masterpieces)**](https://dev.to/georgekobaidze/promise-delivered-welcome-to-the-dev-hall-of-fame-65-authors-65-masterpieces-15fa) `#community` `#discuss` `#showdev` · *by Giorgi Kobaidze*
-- [**🐾 DEV Pet Corner #2: Show Us Your Pets!**](https://dev.to/hemapriya_kanagala/dev-pet-corner-2-show-us-your-pets-37nj) `#discuss` `#community` `#watercooler` · *by Hemapriya Kanagala*
-- [**The Garden I Wait for Every Winter**](https://dev.to/shubhradev/the-garden-i-wait-for-every-winter-8mg) `#watercooler` `#discuss` `#gardening` · *by Shubhra Pokhariya*
-- [**Fine-Tuning Qwen3-8B with Tinker: From 50% to 76% Accuracy, and Burning Through My Budget**](https://dev.to/gramli/fine-tuning-qwen3-8b-with-tinker-from-50-to-76-accuracy-and-burning-through-my-budget-48mh) `#devchallenge` `#hf26challenge` `#ai` · *by Daniel Balcarek*
+- [**Bank alerts to a day-book, with a local Gemma**](https://dev.to/dannwaneri/bank-alerts-to-a-day-book-with-a-local-gemma-21dl) `#devchallenge` `#hf26challenge` `#gemma` · *by Daniel Nwaneri*
+- [**"Rails Magic" Isn't Magic. How a Request Actually Travels Through Rails.**](https://dev.to/smtahosin/rails-magic-isnt-magic-how-a-request-actually-travels-through-rails-5gc5) `#rails` `#ruby` `#webdev` · *by S M Tahosin*
+- [**Stress-Testing Gemini 4 Argon: Building a 3D Flutter Kart Game in 15 Prompts with Zero Assets**](https://dev.to/gde/stress-testing-gemini-4-argon-building-a-3d-flutter-kart-game-in-15-prompts-with-zero-assets-55ha) `#flutter` `#ai` `#webassembly` · *by Jhin Lee*
+- [**Writing C for the Web in 2026 Isn't Insane. It Might Be the Future**](https://dev.to/james_anderson_h/writing-c-for-the-web-in-2026-isnt-insane-it-might-be-the-future-529c) `#webdev` `#c` `#architecture` · *by James Anderson*
 
 ---
 
 ### 📊 Crypto & Market Pulse
 | Asset | Symbol | Price (USD) | 24h Trend |
 | :--- | :--- | :--- | :--- |
-| **Bitcoin** | `BTC` | $82,568.00 | 🟢 `+0.88%` |
-| **Ethereum** | `ETH` | $2,423.23 | 🟢 `+0.08%` |
-| **Solana** | `SOL` | $105.37 | 🟢 `+1.25%` |
-| **BNB** | `BNB` | $726.05 | 🟢 `+0.58%` |
+| **Bitcoin** | `BTC` | $81,818.00 | 🔴 `-0.89%` |
+| **Ethereum** | `ETH` | $2,404.62 | 🔴 `-0.82%` |
+| **Solana** | `SOL` | $104.90 | 🔴 `-0.28%` |
+| **BNB** | `BNB` | $729.17 | 🟢 `+0.46%` |
 
 ---
 
@@ -89,6 +80,7 @@ Result: Image shrinks from 800MB+ to under 15MB with minimal CVE vulnerabilities
 <details>
 <summary><b>Click to expand past digests</b></summary>
 
+- 📄 [2026-10-20](digest/2026/10/2026-10-20.md)
 - 📄 [2026-10-19](digest/2026/10/2026-10-19.md)
 - 📄 [2026-10-18](digest/2026/10/2026-10-18.md)
 - 📄 [2026-10-17](digest/2026/10/2026-10-17.md)
@@ -103,7 +95,6 @@ Result: Image shrinks from 800MB+ to under 15MB with minimal CVE vulnerabilities
 - 📄 [2026-10-08](digest/2026/10/2026-10-08.md)
 - 📄 [2026-10-07](digest/2026/10/2026-10-07.md)
 - 📄 [2026-10-06](digest/2026/10/2026-10-06.md)
-- 📄 [2026-10-05](digest/2026/10/2026-10-05.md)
 
 </details>
 
