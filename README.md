@@ -4,48 +4,50 @@
 
 ![Daily Updates](https://img.shields.io/badge/Daily_Update-Active-brightgreen?style=for-the-badge&logo=github-actions)
 ![Curated Content](https://img.shields.io/badge/Content-Tech_Radar_%26_TIL-blue?style=for-the-badge)
-![Status](https://img.shields.io/badge/Last_Sync-2026-10-22-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Last_Sync-2026-10-23-orange?style=for-the-badge)
 
 <p align="center">
   <b>A curated daily engineering digest, open-source radar, and Today I Learned (TIL) knowledge base.</b><br>
   <i>Maintained automatically via aaPanel / VPS cron & local runner.</i>
 </p>
 
-> *" The best code is no code at all. "*  
-> — **Jeff Atwood**
+> *" Talk is cheap. Show me the code. "*  
+> — **Linus Torvalds**
 
 </div>
 
 ---
 
-## 📌 Latest Digest Snapshot (`2026-10-22`)
+## 📌 Latest Digest Snapshot (`2026-10-23`)
 
-### 💡 Today I Learned: Terminal Productivity
-#### Quick File Backup & Directory Jumping in Bash
+### 💡 Today I Learned: Git Pro Tip
+#### Git Worktree: Work on Multiple Branches Without Stashing
 
-Use brace expansion for quick file backups without retyping:
+Instead of stashing uncommitted changes or cloning the repo multiple times when an urgent bugfix arrives, use `git worktree`:
 ```bash
-cp /etc/nginx/nginx.conf{,.backup}
-# Expands to: cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.backup
+git worktree add ../hotfix-branch hotfix
+# Now you have an isolated directory linked to the hotfix branch!
+# When done:
+git worktree remove ../hotfix-branch
 ```
-And use `cd -` to instantly flip between your current directory and the previous one.
+This saves tons of context switching and avoids messing up your working tree.
 
 ---
 
 ### 🔥 GitHub Trending Spotlight
-- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 491,150**)
+- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 491,458**)
   > A collective list of free APIs
 
-- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 457,660**)
+- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 457,729**)
   > freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.
 
-- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 399,769**)
+- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 399,862**)
   > :books: Freely available programming books
 
-- ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 392,713**)
+- ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 392,793**)
   > The AI that really does things. Any OS. Any Platform. The lobster way. 🦞 
 
-- ⭐ [**nilbuild/developer-roadmap**](https://github.com/nilbuild/developer-roadmap) (`TypeScript` | **★ 370,079**)
+- ⭐ [**nilbuild/developer-roadmap**](https://github.com/nilbuild/developer-roadmap) (`TypeScript` | **★ 370,170**)
   > Interactive roadmaps, guides and other educational content to help developers grow in their careers.
 
 
@@ -53,26 +55,26 @@ And use `cd -` to instantly flip between your current directory and the previous
 
 ### 📰 Tech Radar Highlights
 #### 🌐 Hacker News Top Discussions
-- [**mitmproxy adds --emudhra option**](https://github.com/mitmproxy/mitmproxy/commit/169234499088fc2c414644a67efaed3d64ae2e3b) · `279 pts` · *by ahlCVA*
-- [**There isn't an easy exploit for this PHP vulnerability**](https://eliastaylor.com/noexploit/) · `236 pts` · *by zkldi*
-- [**The recently proposed o(n log n) integer multiplication algorithm [pdf]**](https://web.maths.unsw.edu.au/~davidharvey/research/subnlogn.pdf) · `23 pts` · *by craigcitro*
-- [**Epic vs. Apple AU:Court Orders Alt App Stores,Sideloading and 3rd Party Payments**](https://www.judgments.fedcourt.gov.au/judgments/Judgments/fca/single/2026/2026fca1552) · `45 pts` · *by Mayzie*
+- [**Docker is weird**](https://codeandcake.dev/posts/2026-10-22-docker-is-weird) · `192 pts` · *by psxuaw*
+- [**LLMs are making formal software verification feasible at a much larger scale**](https://www.anthropic.com/research/formal-verification) · `172 pts` · *by johnbender*
+- [**Quad9 (DNS Resolver) to Exit France**](https://quad9.net/news/blog/au-revoir-france/) · `1034 pts` · *by farrokhi*
+- [**Mortality Among People with Attention-Deficit/Hyperactivity Disorder**](https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2855472) · `25 pts` · *by gumby*
 
 #### ✍️ Dev.to Trending Community Reads
-- [**How to Become a Tech Conference Speaker (And Why You Might Regret It)**](https://dev.to/sylwia-lask/how-to-become-a-tech-conference-speaker-and-why-you-might-regret-it-2ink) `#career` `#speaking` `#techtalks` · *by Sylwia Laskowska*
-- [**I Got Tired of Coming into my Lab to Check the Pressure of my Cryocooler so I Built a Tool to do it for Me**](https://dev.to/pahorton/i-got-tired-of-coming-into-my-lab-to-check-the-pressure-of-my-cryocooler-so-i-built-a-tool-to-do-it-4ob7) `#devchallenge` `#hf26challenge` `#tigerdata` · *by Paul Horton*
-- [**is-kit Reached 100 Stars ⭐🎉 Here’s What Changed Since 50**](https://dev.to/nyaomaru/is-kit-reached-100-stars-heres-what-changed-since-50-49pf) `#typescript` `#opensource` `#webdev` · *by nyaomaru*
-- [**In Ruby, Objects Don't Have Methods. How Method Lookup Actually Works.**](https://dev.to/smtahosin/in-ruby-objects-dont-have-methods-how-method-lookup-actually-works-31g9) `#ruby` `#programming` `#webdev` · *by S M Tahosin*
+- [**Don't Be a Proxy Between Me and Your AI**](https://dev.to/adamthedeveloper/dont-be-a-proxy-between-me-and-your-ai-mcn) `#ai` `#discuss` `#career` · *by Adam - The Developer ✨*
+- [**Scaling stateful Gemini 4 Argon agent sessions on GKE: Connection draining, startup boost, and session persistence**](https://dev.to/googlecloud/scaling-stateful-gemini-4-argon-agent-sessions-on-gke-connection-draining-startup-boost-and-13ln) `#kubernetes` `#ai` `#gke` · *by Olivier Bourgeois*
+- [**Buried Reads #1: Five Good Posts That Deserve More Attention**](https://dev.to/dj29/buried-reads-1-five-good-posts-that-deserve-more-attention-40ib) `#discuss` `#writing` `#devjournal` · *by Dhruv Jani*
+- [**PHP2Shell: Your Code Was Fine, The Engine Was Not**](https://dev.to/lovestaco/php2shell-your-code-was-fine-the-engine-was-not-gc2) `#php` `#security` `#webdev` · *by Athreya aka Maneshwar*
 
 ---
 
 ### 📊 Crypto & Market Pulse
 | Asset | Symbol | Price (USD) | 24h Trend |
 | :--- | :--- | :--- | :--- |
-| **Bitcoin** | `BTC` | $82,775.00 | 🟢 `+0.13%` |
-| **Ethereum** | `ETH` | $2,439.32 | 🔴 `-0.22%` |
-| **Solana** | `SOL` | $105.49 | 🔴 `-0.45%` |
-| **BNB** | `BNB` | $740.93 | 🟢 `+0.17%` |
+| **Bitcoin** | `BTC` | $81,640.00 | 🔴 `-1.37%` |
+| **Ethereum** | `ETH` | $2,405.57 | 🔴 `-1.35%` |
+| **Solana** | `SOL` | $104.04 | 🔴 `-1.40%` |
+| **BNB** | `BNB` | $737.13 | 🔴 `-0.51%` |
 
 ---
 
@@ -81,6 +83,7 @@ And use `cd -` to instantly flip between your current directory and the previous
 <details>
 <summary><b>Click to expand past digests</b></summary>
 
+- 📄 [2026-10-23](digest/2026/10/2026-10-23.md)
 - 📄 [2026-10-22](digest/2026/10/2026-10-22.md)
 - 📄 [2026-10-21](digest/2026/10/2026-10-21.md)
 - 📄 [2026-10-20](digest/2026/10/2026-10-20.md)
@@ -95,7 +98,6 @@ And use `cd -` to instantly flip between your current directory and the previous
 - 📄 [2026-10-11](digest/2026/10/2026-10-11.md)
 - 📄 [2026-10-10](digest/2026/10/2026-10-10.md)
 - 📄 [2026-10-09](digest/2026/10/2026-10-09.md)
-- 📄 [2026-10-08](digest/2026/10/2026-10-08.md)
 
 </details>
 
