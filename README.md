@@ -4,83 +4,74 @@
 
 ![Daily Updates](https://img.shields.io/badge/Daily_Update-Active-brightgreen?style=for-the-badge&logo=github-actions)
 ![Curated Content](https://img.shields.io/badge/Content-Tech_Radar_%26_TIL-blue?style=for-the-badge)
-![Status](https://img.shields.io/badge/Last_Sync-2026-10-27-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Last_Sync-2026-10-28-orange?style=for-the-badge)
 
 <p align="center">
   <b>A curated daily engineering digest, open-source radar, and Today I Learned (TIL) knowledge base.</b><br>
   <i>Maintained automatically via aaPanel / VPS cron & local runner.</i>
 </p>
 
-> *" Make it work, make it right, make it fast. "*  
-> — **Kent Beck**
+> *" Premature optimization is the root of all evil. "*  
+> — **Donald Knuth**
 
 </div>
 
 ---
 
-## 📌 Latest Digest Snapshot (`2026-10-27`)
+## 📌 Latest Digest Snapshot (`2026-10-28`)
 
-### 💡 Today I Learned: Docker Best Practices
-#### Use Multi-Stage Builds to Minimize Image Attack Surface
+### 💡 Today I Learned: Architecture & API
+#### Design Idempotent APIs with `Idempotency-Key`
 
-Never ship compilers, build tools, or source code caches into production containers:
-```dockerfile
-# Stage 1: Build
-FROM golang:1.22-alpine AS builder
-WORKDIR /app
-COPY . .
-RUN go build -ldflags="-s -w" -o server .
-
-# Stage 2: Minimal Runtime
-FROM scratch
-COPY --from=builder /app/server /server
-ENTRYPOINT ["/server"]
-```
-Result: Image shrinks from 800MB+ to under 15MB with minimal CVE vulnerabilities.
+Payment gateways and state-mutating POST endpoints must prevent duplicate execution due to client retries or network drops.
+Accept a client-generated UUID in the `Idempotency-Key` header:
+1. Cache the request status in Redis: `SET key uuid NX EX 86400`.
+2. If key exists, return the cached previous response immediately.
+3. If new, process the request, store the response in Redis, and return.
 
 ---
 
 ### 🔥 GitHub Trending Spotlight
-- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 492,470**)
+- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 492,762**)
   > A collective list of free APIs
 
-- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 457,997**)
+- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 458,061**)
   > freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.
 
-- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 400,213**)
+- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 400,321**)
   > :books: Freely available programming books
 
-- ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 393,163**)
-  > The AI that really does things. Any OS. Any Platform. The lobster way. 🦞 
-
-- ⭐ [**morluto/rea**](https://github.com/morluto/rea) (`TypeScript` | **★ 392,471**)
+- ⭐ [**morluto/rea**](https://github.com/morluto/rea) (`TypeScript` | **★ 398,104**)
   > Reverse engineer anything with agents, from app behavior down to native binaries.
+
+- ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 393,230**)
+  > The AI that really does things. Any OS. Any Platform. The lobster way. 🦞 
 
 
 ---
 
 ### 📰 Tech Radar Highlights
 #### 🌐 Hacker News Top Discussions
-- [**Three new discoveries in mathematics, computer science, and physics**](https://openai.com/index/building-scientific-understanding-with-academic-communities/) · `592 pts` · *by jonluca*
-- [**The Exponential Time Hypothesis Is False [pdf]**](https://github.com/openai/math/blob/main/preprints/The-Exponential-Time-Hypothesis-is-False-October-25-2026/paper.pdf) · `395 pts` · *by vok*
-- [**Sebastian Raschka's from-scratch video course on building reasoning models**](https://magazine.sebastianraschka.com/p/building-reasoning-models) · `601 pts` · *by sgiannopoulos*
-- [**Oldest GUI application that still runs on Windows 11**](https://blog.enlyth.com/posts/oldest-windows-gui-app-win-11/) · `335 pts` · *by enlyth*
+- [**Git for US Legislation**](https://lexifina.com/blog/git-for-the-us-code) · `76 pts` · *by alansaber*
+- [**Genie 4**](https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/) · `789 pts` · *by acossta*
+- [**Ink droplets in motion snag top prize in Nikon Small World contest**](https://arstechnica.com/science/2026/10/meet-the-2026-winner-of-nikons-small-world-photomicrography-contest/) · `114 pts` · *by _Microft*
+- [**Ghostty 1.4**](https://ghostty.org/docs/install/release-notes/1-4-0) · `839 pts` · *by deaux*
 
 #### ✍️ Dev.to Trending Community Reads
-- [**Doors I Walked Through to Reach DEV**](https://dev.to/devengers/doors-i-walked-through-to-reach-dev-5294) `#career` `#community` `#writing` · *by Giorgi Kobaidze*
-- [**When Recovering From Burnout, Writing Became My Therapy. And This Week My First Coding Book Turns 1 Year Old. Ask Me Anything!**](https://dev.to/canro91/to-recover-from-burnout-writing-became-my-therapy-and-this-week-my-first-coding-book-turns-1-year-388e) `#discuss` `#watercooler` `#ama` · *by Cesar Aguirre*
-- [**Não precisa ser popular pra compartilhar: minha história até Berlim**](https://dev.to/he4rt/nao-precisa-ser-popular-pra-compartilhar-minha-historia-ate-berlim-1hbc) `#community` `#braziliandevs` `#career` · *by Alicia Marianne Gonçalves*
-- [**I Don’t Write Ruby. A Fix I Sent Is Now in Forem.**](https://dev.to/dannwaneri/i-dont-write-ruby-a-fix-i-sent-is-now-in-forem-13c5) `#opensource` `#forem` `#devto` · *by Daniel Nwaneri*
+- [**Your DEV posts have a beautiful new share card ✨**](https://dev.to/devteam/your-dev-posts-have-a-beautiful-new-share-card-4be8) `#devto` `#showdev` `#opensource` · *by Jess Lee*
+- [**Stratagems #32: The AI Logged a Withdrawal. P Took It as Proof.**](https://dev.to/xulingfeng/stratagems-32-the-ai-logged-a-withdrawal-p-took-it-as-proof-2jo2) `#ai` `#discuss` `#programming` · *by xulingfeng*
+- [**The Most Embarrassing Private Key in Web PKI History**](https://dev.to/varshithvhegde/the-most-embarrassing-private-key-in-web-pki-history-f9b) `#security` `#webdev` `#devops` · *by Varshith V Hegde*
+- [**I deleted the mail server from my VPS and got 1.2 GB of RAM back**](https://dev.to/remdore/i-deleted-the-mail-server-from-my-vps-and-got-12-gb-of-ram-back-cdc) `#django` `#email` `#selfhosted` · *by Remdore*
 
 ---
 
 ### 📊 Crypto & Market Pulse
 | Asset | Symbol | Price (USD) | 24h Trend |
 | :--- | :--- | :--- | :--- |
-| **Bitcoin** | `BTC` | $79,807.00 | 🟢 `+0.23%` |
-| **Ethereum** | `ETH` | $2,315.55 | 🟢 `+0.41%` |
-| **Solana** | `SOL` | $100.19 | 🔴 `-0.24%` |
-| **BNB** | `BNB` | $738.69 | 🟢 `+0.29%` |
+| **Bitcoin** | `BTC` | $81,032.00 | 🟢 `+1.69%` |
+| **Ethereum** | `ETH` | $2,358.80 | 🟢 `+2.07%` |
+| **Solana** | `SOL` | $101.88 | 🟢 `+1.88%` |
+| **BNB** | `BNB` | $746.40 | 🟢 `+1.14%` |
 
 ---
 
@@ -89,6 +80,7 @@ Result: Image shrinks from 800MB+ to under 15MB with minimal CVE vulnerabilities
 <details>
 <summary><b>Click to expand past digests</b></summary>
 
+- 📄 [2026-10-28](digest/2026/10/2026-10-28.md)
 - 📄 [2026-10-27](digest/2026/10/2026-10-27.md)
 - 📄 [2026-10-26](digest/2026/10/2026-10-26.md)
 - 📄 [2026-10-25](digest/2026/10/2026-10-25.md)
@@ -103,7 +95,6 @@ Result: Image shrinks from 800MB+ to under 15MB with minimal CVE vulnerabilities
 - 📄 [2026-10-16](digest/2026/10/2026-10-16.md)
 - 📄 [2026-10-15](digest/2026/10/2026-10-15.md)
 - 📄 [2026-10-14](digest/2026/10/2026-10-14.md)
-- 📄 [2026-10-13](digest/2026/10/2026-10-13.md)
 
 </details>
 
