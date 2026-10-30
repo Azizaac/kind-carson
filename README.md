@@ -4,49 +4,48 @@
 
 ![Daily Updates](https://img.shields.io/badge/Daily_Update-Active-brightgreen?style=for-the-badge&logo=github-actions)
 ![Curated Content](https://img.shields.io/badge/Content-Tech_Radar_%26_TIL-blue?style=for-the-badge)
-![Status](https://img.shields.io/badge/Last_Sync-2026-10-29-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Last_Sync-2026-10-30-orange?style=for-the-badge)
 
 <p align="center">
   <b>A curated daily engineering digest, open-source radar, and Today I Learned (TIL) knowledge base.</b><br>
   <i>Maintained automatically via aaPanel / VPS cron & local runner.</i>
 </p>
 
-> *" Software is a great combination between artistry and engineering. "*  
-> — **Bill Gates**
+> *" The best code is no code at all. "*  
+> — **Jeff Atwood**
 
 </div>
 
 ---
 
-## 📌 Latest Digest Snapshot (`2026-10-29`)
+## 📌 Latest Digest Snapshot (`2026-10-30`)
 
-### 💡 Today I Learned: Security Engineering
-#### Timing Attacks & Safe String Comparison
+### 💡 Today I Learned: Terminal Productivity
+#### Quick File Backup & Directory Jumping in Bash
 
-Comparing secret hashes or API tokens using standard `==` is vulnerable to timing attacks (it exits early on the first mismatched byte).
-In Python, always use `hmac.compare_digest`:
-```python
-import hmac
-is_valid = hmac.compare_digest(user_token, secret_token)
+Use brace expansion for quick file backups without retyping:
+```bash
+cp /etc/nginx/nginx.conf{,.backup}
+# Expands to: cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.backup
 ```
-This runs in constant time, preventing attackers from measuring response latency to deduce tokens.
+And use `cd -` to instantly flip between your current directory and the previous one.
 
 ---
 
 ### 🔥 GitHub Trending Spotlight
-- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 493,062**)
+- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 493,319**)
   > A collective list of free APIs
 
-- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 458,138**)
+- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 458,203**)
   > freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.
 
-- ⭐ [**morluto/rea**](https://github.com/morluto/rea) (`TypeScript` | **★ 403,480**)
+- ⭐ [**morluto/rea**](https://github.com/morluto/rea) (`TypeScript` | **★ 408,590**)
   > Reverse engineer anything with agents, from app behavior down to native binaries.
 
-- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 400,422**)
+- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 400,499**)
   > :books: Freely available programming books
 
-- ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 393,302**)
+- ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 393,391**)
   > The AI that really does things. Any OS. Any Platform. The lobster way. 🦞 
 
 
@@ -54,26 +53,26 @@ This runs in constant time, preventing attackers from measuring response latency
 
 ### 📰 Tech Radar Highlights
 #### 🌐 Hacker News Top Discussions
-- [**Qwenputer: A functioning, deterministic RISC-V CPU inside Qwen3.5**](https://divagr.com/blog/qwenputer) · `206 pts` · *by csmantle*
-- [**Why is this fingerprinting script creating bioweapons?**](https://nullpt.rs/fingerprinting-bioweapons) · `951 pts` · *by hazebooth*
-- [**GitLab Security Incident: Attempted Exploitation of CVE-2026-97229**](https://alpinelinux.org/posts/GitLab-security-incident-CVE-2026-97229.html) · `118 pts` · *by sashk*
-- [**Claude Code burns ~15–20% of your tokens on a 3-word status line**](https://gist.github.com/flamerix-ai/c3905705cc4205e5de3011fa2e74efce) · `76 pts` · *by NikZaal*
+- [**Binance-hacker-1029 – $5.6B stolen from Binance**](https://arkm.com/explorer/entity/21a94755-f604-45e5-9501-6542e23005e8) · `933 pts` · *by Tiberium*
+- [**We're releasing the weights of Mistral Large 4**](https://mistral.ai/news/mistral-large-4-oss/) · `1267 pts` · *by kuberwastaken*
+- [**Cuis: The Modern Smalltalk-80**](https://cuis.st/) · `27 pts` · *by theanonymousone*
+- [**Astroterm: A Planetarium for Your Terminal**](https://github.com/da-luce/astroterm) · `32 pts` · *by nvmdbljstm*
 
 #### ✍️ Dev.to Trending Community Reads
-- [**Lessons Learned: Wifi Server Disaster**](https://dev.to/annavi11arrea1/lessons-learned-wifi-server-disaster-16oc) `#beginners` `#webdev` `#learning` · *by Anna Villarreal*
-- [**MQTT Doesn't Have Message Queues. Inside the 2-Byte Protocol Powering Modern IoT.**](https://dev.to/smtahosin/mqtt-doesnt-have-message-queues-inside-the-2-byte-protocol-powering-modern-iot-161) `#iot` `#networking` `#architecture` · *by S M Tahosin*
-- [**Four Ways a Test Can Lie to You**](https://dev.to/kenwalger/four-ways-a-test-can-lie-to-you-2ibf) `#testing` `#ai` `#programming` · *by Ken W Alger*
-- [**I Compared 6 TypeScript Validation Libraries. Here's What Surprised Me 🤔**](https://dev.to/nyaomaru/i-compared-6-typescript-validation-libraries-heres-what-surprised-me-325g) `#typescript` `#opensource` `#webdev` · *by nyaomaru*
+- [**No Human Will Ever Write Code Better Than LLMs? Better at What?**](https://dev.to/dannwaneri/no-human-will-ever-write-code-better-than-llms-better-at-what-1dme) `#ai` `#programming` `#softwareengineering` · *by Daniel Nwaneri*
+- [**Yes, {} + [] = 0. No, JavaScript Isn’t Broken**](https://dev.to/sylwia-lask/yes-0-no-javascript-isnt-broken-14ob) `#javascript` `#webdev` `#node` · *by Sylwia Laskowska*
+- [**I Almost Paid ₹1,499 for Prime Video I Never Use. An Open-Source AI Model Caught It.**](https://dev.to/sarvar_04/i-almost-paid-1499-for-prime-video-i-never-use-an-open-source-ai-model-caught-it-1egm) `#devchallenge` `#hf26challenge` `#ai` · *by Sarvar Nadaf*
+- [**Every App Eventually Becomes a Dashboard. Please Make It Stop.**](https://dev.to/the_nortern_dev/every-app-eventually-becomes-a-dashboard-please-make-it-stop-37e9) `#programming` `#webdev` `#productivity` · *by NorthernDev*
 
 ---
 
 ### 📊 Crypto & Market Pulse
 | Asset | Symbol | Price (USD) | 24h Trend |
 | :--- | :--- | :--- | :--- |
-| **Bitcoin** | `BTC` | $79,795.00 | 🔴 `-1.33%` |
-| **Ethereum** | `ETH` | $2,307.44 | 🔴 `-1.86%` |
-| **Solana** | `SOL` | $99.63 | 🔴 `-1.99%` |
-| **BNB** | `BNB` | $746.85 | 🟢 `+0.17%` |
+| **Bitcoin** | `BTC` | $78,146.00 | 🔴 `-2.05%` |
+| **Ethereum** | `ETH` | $2,237.06 | 🔴 `-3.03%` |
+| **Solana** | `SOL` | $97.27 | 🔴 `-2.36%` |
+| **BNB** | `BNB` | $716.61 | 🔴 `-4.06%` |
 
 ---
 
@@ -82,6 +81,7 @@ This runs in constant time, preventing attackers from measuring response latency
 <details>
 <summary><b>Click to expand past digests</b></summary>
 
+- 📄 [2026-10-30](digest/2026/10/2026-10-30.md)
 - 📄 [2026-10-29](digest/2026/10/2026-10-29.md)
 - 📄 [2026-10-28](digest/2026/10/2026-10-28.md)
 - 📄 [2026-10-27](digest/2026/10/2026-10-27.md)
@@ -96,7 +96,6 @@ This runs in constant time, preventing attackers from measuring response latency
 - 📄 [2026-10-18](digest/2026/10/2026-10-18.md)
 - 📄 [2026-10-17](digest/2026/10/2026-10-17.md)
 - 📄 [2026-10-16](digest/2026/10/2026-10-16.md)
-- 📄 [2026-10-15](digest/2026/10/2026-10-15.md)
 
 </details>
 
