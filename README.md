@@ -4,48 +4,50 @@
 
 ![Daily Updates](https://img.shields.io/badge/Daily_Update-Active-brightgreen?style=for-the-badge&logo=github-actions)
 ![Curated Content](https://img.shields.io/badge/Content-Tech_Radar_%26_TIL-blue?style=for-the-badge)
-![Status](https://img.shields.io/badge/Last_Sync-2026-10-30-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Last_Sync-2026-10-31-orange?style=for-the-badge)
 
 <p align="center">
   <b>A curated daily engineering digest, open-source radar, and Today I Learned (TIL) knowledge base.</b><br>
   <i>Maintained automatically via aaPanel / VPS cron & local runner.</i>
 </p>
 
-> *" The best code is no code at all. "*  
-> — **Jeff Atwood**
+> *" Talk is cheap. Show me the code. "*  
+> — **Linus Torvalds**
 
 </div>
 
 ---
 
-## 📌 Latest Digest Snapshot (`2026-10-30`)
+## 📌 Latest Digest Snapshot (`2026-10-31`)
 
-### 💡 Today I Learned: Terminal Productivity
-#### Quick File Backup & Directory Jumping in Bash
+### 💡 Today I Learned: Git Pro Tip
+#### Git Worktree: Work on Multiple Branches Without Stashing
 
-Use brace expansion for quick file backups without retyping:
+Instead of stashing uncommitted changes or cloning the repo multiple times when an urgent bugfix arrives, use `git worktree`:
 ```bash
-cp /etc/nginx/nginx.conf{,.backup}
-# Expands to: cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.backup
+git worktree add ../hotfix-branch hotfix
+# Now you have an isolated directory linked to the hotfix branch!
+# When done:
+git worktree remove ../hotfix-branch
 ```
-And use `cd -` to instantly flip between your current directory and the previous one.
+This saves tons of context switching and avoids messing up your working tree.
 
 ---
 
 ### 🔥 GitHub Trending Spotlight
-- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 493,319**)
+- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 493,581**)
   > A collective list of free APIs
 
-- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 458,203**)
+- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 458,257**)
   > freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.
 
-- ⭐ [**morluto/rea**](https://github.com/morluto/rea) (`TypeScript` | **★ 408,590**)
+- ⭐ [**morluto/rea**](https://github.com/morluto/rea) (`TypeScript` | **★ 412,749**)
   > Reverse engineer anything with agents, from app behavior down to native binaries.
 
-- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 400,499**)
+- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 400,560**)
   > :books: Freely available programming books
 
-- ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 393,391**)
+- ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 393,495**)
   > The AI that really does things. Any OS. Any Platform. The lobster way. 🦞 
 
 
@@ -53,26 +55,26 @@ And use `cd -` to instantly flip between your current directory and the previous
 
 ### 📰 Tech Radar Highlights
 #### 🌐 Hacker News Top Discussions
-- [**Binance-hacker-1029 – $5.6B stolen from Binance**](https://arkm.com/explorer/entity/21a94755-f604-45e5-9501-6542e23005e8) · `933 pts` · *by Tiberium*
-- [**We're releasing the weights of Mistral Large 4**](https://mistral.ai/news/mistral-large-4-oss/) · `1267 pts` · *by kuberwastaken*
-- [**Cuis: The Modern Smalltalk-80**](https://cuis.st/) · `27 pts` · *by theanonymousone*
-- [**Astroterm: A Planetarium for Your Terminal**](https://github.com/da-luce/astroterm) · `32 pts` · *by nvmdbljstm*
+- [**Show HN: To Honor Sir Patrick Stewart, Enjoy the TNG Episode Guessing Game**](https://tng.episodle.com/) · `112 pts` · *by francisofascii*
+- [**Backdoor in Claude Code for VS Code extension on the Cursor Marketplace**](https://phorion.io/blog/offical-claude-code-vsx-compromise/) · `821 pts` · *by _chall*
+- [**Cloudflare Turnstile solver library (no headless browser required)**](https://github.com/chris124567/cfsolve) · `123 pts` · *by costco*
+- [**My favourite PowerMac is a Nintendo Wii**](https://virtuallyfun.com/2026/10/29/my-favourite-powermac-is-a-nintendo-wii/) · `264 pts` · *by DHowett*
 
 #### ✍️ Dev.to Trending Community Reads
-- [**No Human Will Ever Write Code Better Than LLMs? Better at What?**](https://dev.to/dannwaneri/no-human-will-ever-write-code-better-than-llms-better-at-what-1dme) `#ai` `#programming` `#softwareengineering` · *by Daniel Nwaneri*
-- [**Yes, {} + [] = 0. No, JavaScript Isn’t Broken**](https://dev.to/sylwia-lask/yes-0-no-javascript-isnt-broken-14ob) `#javascript` `#webdev` `#node` · *by Sylwia Laskowska*
-- [**I Almost Paid ₹1,499 for Prime Video I Never Use. An Open-Source AI Model Caught It.**](https://dev.to/sarvar_04/i-almost-paid-1499-for-prime-video-i-never-use-an-open-source-ai-model-caught-it-1egm) `#devchallenge` `#hf26challenge` `#ai` · *by Sarvar Nadaf*
-- [**Every App Eventually Becomes a Dashboard. Please Make It Stop.**](https://dev.to/the_nortern_dev/every-app-eventually-becomes-a-dashboard-please-make-it-stop-37e9) `#programming` `#webdev` `#productivity` · *by NorthernDev*
+- [**What was your win this week?**](https://dev.to/devteam/what-was-your-win-this-week-47ci) `#weeklyretro` · *by Jess Lee*
+- [**We Need to Talk About How Gross Modern Web Design Has Become (And How We Built an AI to Catch It)**](https://dev.to/dj29/we-need-to-talk-about-how-gross-modern-web-design-has-become-and-how-we-built-an-ai-to-catch-it-5gin) `#discuss` `#showdev` `#webdev` · *by Dhruv Jani*
+- [**My open source project is brand new and already has contributors. Here's what I did.**](https://dev.to/nathan_tarbert/my-open-source-project-is-brand-new-and-already-has-contributors-heres-what-i-did-3fb4) `#opensource` `#github` `#ai` · *by Nathan Tarbert*
+- [**MoE Offloading Isn’t Always Faster: I Tested 5 Models on a 16GB GPU**](https://dev.to/sizzlebop/moe-offloading-isnt-always-faster-i-tested-5-models-on-a-16gb-gpu-498a) `#ai` `#machinelearning` `#llm` · *by Jessica Doering*
 
 ---
 
 ### 📊 Crypto & Market Pulse
 | Asset | Symbol | Price (USD) | 24h Trend |
 | :--- | :--- | :--- | :--- |
-| **Bitcoin** | `BTC` | $78,146.00 | 🔴 `-2.05%` |
-| **Ethereum** | `ETH` | $2,237.06 | 🔴 `-3.03%` |
-| **Solana** | `SOL` | $97.27 | 🔴 `-2.36%` |
-| **BNB** | `BNB` | $716.61 | 🔴 `-4.06%` |
+| **Bitcoin** | `BTC` | $77,069.00 | 🔴 `-1.15%` |
+| **Ethereum** | `ETH` | $2,237.83 | 🟢 `+0.34%` |
+| **Solana** | `SOL` | $96.12 | 🔴 `-0.75%` |
+| **BNB** | `BNB` | $703.74 | 🔴 `-1.86%` |
 
 ---
 
@@ -81,6 +83,7 @@ And use `cd -` to instantly flip between your current directory and the previous
 <details>
 <summary><b>Click to expand past digests</b></summary>
 
+- 📄 [2026-10-31](digest/2026/10/2026-10-31.md)
 - 📄 [2026-10-30](digest/2026/10/2026-10-30.md)
 - 📄 [2026-10-29](digest/2026/10/2026-10-29.md)
 - 📄 [2026-10-28](digest/2026/10/2026-10-28.md)
@@ -95,7 +98,6 @@ And use `cd -` to instantly flip between your current directory and the previous
 - 📄 [2026-10-19](digest/2026/10/2026-10-19.md)
 - 📄 [2026-10-18](digest/2026/10/2026-10-18.md)
 - 📄 [2026-10-17](digest/2026/10/2026-10-17.md)
-- 📄 [2026-10-16](digest/2026/10/2026-10-16.md)
 
 </details>
 
