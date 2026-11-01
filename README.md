@@ -4,50 +4,51 @@
 
 ![Daily Updates](https://img.shields.io/badge/Daily_Update-Active-brightgreen?style=for-the-badge&logo=github-actions)
 ![Curated Content](https://img.shields.io/badge/Content-Tech_Radar_%26_TIL-blue?style=for-the-badge)
-![Status](https://img.shields.io/badge/Last_Sync-2026-10-31-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Last_Sync-2026-11-01-orange?style=for-the-badge)
 
 <p align="center">
   <b>A curated daily engineering digest, open-source radar, and Today I Learned (TIL) knowledge base.</b><br>
   <i>Maintained automatically via aaPanel / VPS cron & local runner.</i>
 </p>
 
-> *" Talk is cheap. Show me the code. "*  
-> — **Linus Torvalds**
+> *" Simplicity is prerequisite for reliability. "*  
+> — **Edsger W. Dijkstra**
 
 </div>
 
 ---
 
-## 📌 Latest Digest Snapshot (`2026-10-31`)
+## 📌 Latest Digest Snapshot (`2026-11-01`)
 
-### 💡 Today I Learned: Git Pro Tip
-#### Git Worktree: Work on Multiple Branches Without Stashing
+### 💡 Today I Learned: Python Optimization
+#### Use `__slots__` to Slash Memory Usage in Class Instances
 
-Instead of stashing uncommitted changes or cloning the repo multiple times when an urgent bugfix arrives, use `git worktree`:
-```bash
-git worktree add ../hotfix-branch hotfix
-# Now you have an isolated directory linked to the hotfix branch!
-# When done:
-git worktree remove ../hotfix-branch
+When creating millions of lightweight objects, Python dictionaries (`__dict__`) add massive memory overhead. Define `__slots__`:
+```python
+class Coordinate:
+    __slots__ = ('x', 'y')
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
 ```
-This saves tons of context switching and avoids messing up your working tree.
+This prevents dynamic attribute creation and can reduce memory footprint by up to **60-70%**.
 
 ---
 
 ### 🔥 GitHub Trending Spotlight
-- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 493,581**)
+- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 493,861**)
   > A collective list of free APIs
 
-- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 458,257**)
+- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 458,332**)
   > freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.
 
-- ⭐ [**morluto/rea**](https://github.com/morluto/rea) (`TypeScript` | **★ 412,749**)
+- ⭐ [**morluto/rea**](https://github.com/morluto/rea) (`TypeScript` | **★ 415,963**)
   > Reverse engineer anything with agents, from app behavior down to native binaries.
 
-- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 400,560**)
+- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 400,628**)
   > :books: Freely available programming books
 
-- ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 393,495**)
+- ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 393,568**)
   > The AI that really does things. Any OS. Any Platform. The lobster way. 🦞 
 
 
@@ -55,26 +56,26 @@ This saves tons of context switching and avoids messing up your working tree.
 
 ### 📰 Tech Radar Highlights
 #### 🌐 Hacker News Top Discussions
-- [**Show HN: To Honor Sir Patrick Stewart, Enjoy the TNG Episode Guessing Game**](https://tng.episodle.com/) · `112 pts` · *by francisofascii*
-- [**Backdoor in Claude Code for VS Code extension on the Cursor Marketplace**](https://phorion.io/blog/offical-claude-code-vsx-compromise/) · `821 pts` · *by _chall*
-- [**Cloudflare Turnstile solver library (no headless browser required)**](https://github.com/chris124567/cfsolve) · `123 pts` · *by costco*
-- [**My favourite PowerMac is a Nintendo Wii**](https://virtuallyfun.com/2026/10/29/my-favourite-powermac-is-a-nintendo-wii/) · `264 pts` · *by DHowett*
+- [**HackerTube: YouTube built from videos recommended by HN**](https://karpathy.bearblog.dev/hacker-tube/) · `920 pts` · *by karpathy*
+- [**An Italian farmer found some unknown seeds in his attic and planted them**](https://www.smithsonianmag.com/science-nature/italian-farmer-found-unknown-seeds-attic-with-nothing-lose-planted-them-result-biblical-180989644/) · `235 pts` · *by ecares*
+- [**TCP Use-After-Free: CVE-2026-98432 / CVSS 9.8**](https://atlasum.net/blog/cve-2026-98432-linux-ipv4-tcp-uaf) · `401 pts` · *by oger*
+- [**Memdoor: A team of 5 Qwen3.8-27B models beats Fable 5 on LiveCodeBench Hard**](https://github.com/guregodevo/memdoor/tree/main/examples/workflows/team-solve) · `132 pts` · *by guregodevo*
 
 #### ✍️ Dev.to Trending Community Reads
-- [**What was your win this week?**](https://dev.to/devteam/what-was-your-win-this-week-47ci) `#weeklyretro` · *by Jess Lee*
-- [**We Need to Talk About How Gross Modern Web Design Has Become (And How We Built an AI to Catch It)**](https://dev.to/dj29/we-need-to-talk-about-how-gross-modern-web-design-has-become-and-how-we-built-an-ai-to-catch-it-5gin) `#discuss` `#showdev` `#webdev` · *by Dhruv Jani*
-- [**My open source project is brand new and already has contributors. Here's what I did.**](https://dev.to/nathan_tarbert/my-open-source-project-is-brand-new-and-already-has-contributors-heres-what-i-did-3fb4) `#opensource` `#github` `#ai` · *by Nathan Tarbert*
-- [**MoE Offloading Isn’t Always Faster: I Tested 5 Models on a 16GB GPU**](https://dev.to/sizzlebop/moe-offloading-isnt-always-faster-i-tested-5-models-on-a-16gb-gpu-498a) `#ai` `#machinelearning` `#llm` · *by Jessica Doering*
+- [**Every Codebase Has a '// DO NOT TOUCH' File. I Built an AI Necromancer to Summon the Ghost of the Developer Who Wrote It 💀🔮**](https://dev.to/dj29/every-codebase-has-a-do-not-touch-file-i-built-an-ai-necromancer-to-summon-the-ghost-of-the-2no5) `#devchallenge` `#hf26challenge` `#opensource` · *by Dhruv Jani*
+- [**I Retested My MoE Offloading Benchmarks. Some of My Conclusions Changed.**](https://dev.to/sizzlebop/i-retested-my-moe-offloading-benchmarks-some-of-my-conclusions-changed-6f4) `#ai` `#machinelearning` `#llm` · *by Jessica Doering*
+- [**Trick or Type Guard? Surviving `unknown` with is-kit 🎃**](https://dev.to/nyaomaru/trick-or-type-guard-surviving-unknown-with-is-kit-4oc2) `#typescript` `#opensource` `#beginners` · *by nyaomaru*
+- [**Here Lies My Toaster**](https://dev.to/nazar-boyko/here-lies-my-toaster-1nmm) `#devchallenge` `#hf26challenge` `#gemma` · *by Nazar Boyko*
 
 ---
 
 ### 📊 Crypto & Market Pulse
 | Asset | Symbol | Price (USD) | 24h Trend |
 | :--- | :--- | :--- | :--- |
-| **Bitcoin** | `BTC` | $77,069.00 | 🔴 `-1.15%` |
-| **Ethereum** | `ETH` | $2,237.83 | 🟢 `+0.34%` |
-| **Solana** | `SOL` | $96.12 | 🔴 `-0.75%` |
-| **BNB** | `BNB` | $703.74 | 🔴 `-1.86%` |
+| **Bitcoin** | `BTC` | $77,689.00 | 🟢 `+0.64%` |
+| **Ethereum** | `ETH` | $2,265.53 | 🟢 `+1.20%` |
+| **Solana** | `SOL` | $95.47 | 🔴 `-0.64%` |
+| **BNB** | `BNB` | $703.62 | 🟢 `+0.12%` |
 
 ---
 
@@ -83,6 +84,7 @@ This saves tons of context switching and avoids messing up your working tree.
 <details>
 <summary><b>Click to expand past digests</b></summary>
 
+- 📄 [2026-11-01](digest/2026/11/2026-11-01.md)
 - 📄 [2026-10-31](digest/2026/10/2026-10-31.md)
 - 📄 [2026-10-30](digest/2026/10/2026-10-30.md)
 - 📄 [2026-10-29](digest/2026/10/2026-10-29.md)
@@ -97,7 +99,6 @@ This saves tons of context switching and avoids messing up your working tree.
 - 📄 [2026-10-20](digest/2026/10/2026-10-20.md)
 - 📄 [2026-10-19](digest/2026/10/2026-10-19.md)
 - 📄 [2026-10-18](digest/2026/10/2026-10-18.md)
-- 📄 [2026-10-17](digest/2026/10/2026-10-17.md)
 
 </details>
 
