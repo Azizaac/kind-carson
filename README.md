@@ -4,56 +4,47 @@
 
 ![Daily Updates](https://img.shields.io/badge/Daily_Update-Active-brightgreen?style=for-the-badge&logo=github-actions)
 ![Curated Content](https://img.shields.io/badge/Content-Tech_Radar_%26_TIL-blue?style=for-the-badge)
-![Status](https://img.shields.io/badge/Last_Sync-2026-11-04-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Last_Sync-2026-11-05-orange?style=for-the-badge)
 
 <p align="center">
   <b>A curated daily engineering digest, open-source radar, and Today I Learned (TIL) knowledge base.</b><br>
   <i>Maintained automatically via aaPanel / VPS cron & local runner.</i>
 </p>
 
-> *" Make it work, make it right, make it fast. "*  
-> — **Kent Beck**
+> *" Premature optimization is the root of all evil. "*  
+> — **Donald Knuth**
 
 </div>
 
 ---
 
-## 📌 Latest Digest Snapshot (`2026-11-04`)
+## 📌 Latest Digest Snapshot (`2026-11-05`)
 
-### 💡 Today I Learned: Docker Best Practices
-#### Use Multi-Stage Builds to Minimize Image Attack Surface
+### 💡 Today I Learned: Architecture & API
+#### Design Idempotent APIs with `Idempotency-Key`
 
-Never ship compilers, build tools, or source code caches into production containers:
-```dockerfile
-# Stage 1: Build
-FROM golang:1.22-alpine AS builder
-WORKDIR /app
-COPY . .
-RUN go build -ldflags="-s -w" -o server .
-
-# Stage 2: Minimal Runtime
-FROM scratch
-COPY --from=builder /app/server /server
-ENTRYPOINT ["/server"]
-```
-Result: Image shrinks from 800MB+ to under 15MB with minimal CVE vulnerabilities.
+Payment gateways and state-mutating POST endpoints must prevent duplicate execution due to client retries or network drops.
+Accept a client-generated UUID in the `Idempotency-Key` header:
+1. Cache the request status in Redis: `SET key uuid NX EX 86400`.
+2. If key exists, return the cached previous response immediately.
+3. If new, process the request, store the response in Redis, and return.
 
 ---
 
 ### 🔥 GitHub Trending Spotlight
-- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 495,901**)
+- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 496,170**)
   > A collective list of free APIs
 
-- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 458,511**)
+- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 458,561**)
   > freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.
 
-- ⭐ [**morluto/rea**](https://github.com/morluto/rea) (`TypeScript` | **★ 427,753**)
+- ⭐ [**morluto/rea**](https://github.com/morluto/rea) (`TypeScript` | **★ 431,611**)
   > Reverse engineer anything with agents, from app behavior down to native binaries.
 
-- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 400,833**)
+- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 400,885**)
   > :books: Freely available programming books
 
-- ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 393,869**)
+- ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 393,930**)
   > The AI that really does things. Any OS. Any Platform. The lobster way. 🦞 
 
 
@@ -61,26 +52,26 @@ Result: Image shrinks from 800MB+ to under 15MB with minimal CVE vulnerabilities
 
 ### 📰 Tech Radar Highlights
 #### 🌐 Hacker News Top Discussions
-- [**C++26 Disapproved**](https://andreasfertig.com/blog/2026/11/cpp26-dis-failed-how-does-cpp-survive/) · `137 pts` · *by thatxliner*
-- [**Distinct cellular and genetic differences in colorectal cancer in young patients**](https://www.dana-farber.org/newsroom/news-releases/2026/study-reveals-distinct-cellular-and-genetic-differences-in-colorectal-cancer-in-younger-patients) · `27 pts` · *by gmays*
-- [**The Internals of PostgreSQL**](https://www.interdb.jp/pg/index.html) · `186 pts` · *by ibobev*
-- [**Jailbreaking my car's navigation system just so I can change the time**](https://blog.nns.ee/2026/11/02/renault-hack/) · `679 pts` · *by xx_ns*
+- [**Residential proxies detected on White House network**](https://layer3intel.com/blog/residential-proxies-white-house-network) · `830 pts` · *by Rasbora*
+- [**Images 2.6**](https://openai.com/index/introducing-images-2-6/) · `187 pts` · *by davidbarker*
+- [**A thousand fewer paths to root**](https://openai.com/index/a-thousand-fewer-paths-to-root/) · `220 pts` · *by dangelosaurus*
+- [**Starfall – Affordable, routine access to microgravity**](https://www.spacex.com/starfall) · `162 pts` · *by gmays*
 
 #### ✍️ Dev.to Trending Community Reads
-- [**One Last Post, and a Proper Goodbye**](https://dev.to/anchildress1/one-last-post-and-a-proper-goodbye-53a2) `#watercooler` `#writing` `#community` · *by Ashley Childress*
-- [**That's a Wrap on Hacktoberfest 2026! 🎃👻**](https://dev.to/devteam/thats-a-wrap-on-hacktoberfest-2026-148k) `#hacktoberfest` `#hf26challenge` `#opensource` · *by Noah Brinker*
-- [**I lost half a day to an n8n workflow that was "working." It never ran.**](https://dev.to/sarvar_04/i-lost-half-a-day-to-an-n8n-workflow-that-was-working-it-never-ran-43p) `#n8n` `#aws` `#devops` · *by Sarvar Nadaf*
-- [**Let's see where you code!**](https://dev.to/maame-codes/lets-see-where-you-code-147) `#watercooler` `#discuss` · *by Maame Afua A. P. Fordjour *
+- [**We're Building AI to Replace Ourselves. What's the Plan?**](https://dev.to/sylwia-lask/were-building-ai-to-replace-ourselves-whats-the-plan-4oll) `#discuss` `#ai` · *by Sylwia Laskowska*
+- [**Scared to Publish Your First Technical Article? Don't Be. I'll Be There to Read It**](https://dev.to/georgekobaidze/scared-to-publish-your-first-technical-article-dont-be-ill-be-there-to-read-it-1gg2) `#community` `#beginners` `#writing` · *by Giorgi Kobaidze*
+- [**Meet Necoz! 😸 Small. Simple. Useful.**](https://dev.to/nyaomaru/meet-necoz-small-simple-useful-ppo) `#opensource` `#typescript` `#software` · *by nyaomaru*
+- [**How Hackers Weaponized DEV.to's Mention System to Spread a Phishing Scam**](https://dev.to/ggle_in/how-hackers-weaponized-devtos-mention-system-to-spread-a-phishing-scam-1j7c) `#security` `#devto` `#phising` · *by Jack*
 
 ---
 
 ### 📊 Crypto & Market Pulse
 | Asset | Symbol | Price (USD) | 24h Trend |
 | :--- | :--- | :--- | :--- |
-| **Bitcoin** | `BTC` | $77,030.00 | 🟢 `+0.18%` |
-| **Ethereum** | `ETH` | $2,267.56 | 🟢 `+0.60%` |
-| **Solana** | `SOL` | $91.86 | 🔴 `-0.40%` |
-| **BNB** | `BNB` | $691.41 | 🔴 `-0.69%` |
+| **Bitcoin** | `BTC` | $80,449.00 | 🟢 `+4.12%` |
+| **Ethereum** | `ETH` | $2,423.66 | 🟢 `+6.40%` |
+| **Solana** | `SOL` | $96.01 | 🟢 `+4.22%` |
+| **BNB** | `BNB` | $714.12 | 🟢 `+3.05%` |
 
 ---
 
@@ -89,6 +80,7 @@ Result: Image shrinks from 800MB+ to under 15MB with minimal CVE vulnerabilities
 <details>
 <summary><b>Click to expand past digests</b></summary>
 
+- 📄 [2026-11-05](digest/2026/11/2026-11-05.md)
 - 📄 [2026-11-04](digest/2026/11/2026-11-04.md)
 - 📄 [2026-11-03](digest/2026/11/2026-11-03.md)
 - 📄 [2026-11-02](digest/2026/11/2026-11-02.md)
@@ -103,7 +95,6 @@ Result: Image shrinks from 800MB+ to under 15MB with minimal CVE vulnerabilities
 - 📄 [2026-10-24](digest/2026/10/2026-10-24.md)
 - 📄 [2026-10-23](digest/2026/10/2026-10-23.md)
 - 📄 [2026-10-22](digest/2026/10/2026-10-22.md)
-- 📄 [2026-10-21](digest/2026/10/2026-10-21.md)
 
 </details>
 
