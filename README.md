@@ -4,52 +4,56 @@
 
 ![Daily Updates](https://img.shields.io/badge/Daily_Update-Active-brightgreen?style=for-the-badge&logo=github-actions)
 ![Curated Content](https://img.shields.io/badge/Content-Tech_Radar_%26_TIL-blue?style=for-the-badge)
-![Status](https://img.shields.io/badge/Last_Sync-2026-11-11-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Last_Sync-2026-11-12-orange?style=for-the-badge)
 
 <p align="center">
   <b>A curated daily engineering digest, open-source radar, and Today I Learned (TIL) knowledge base.</b><br>
   <i>Maintained automatically via aaPanel / VPS cron & local runner.</i>
 </p>
 
-> *" First, solve the problem. Then, write the code. "*  
-> — **John Johnson**
+> *" Make it work, make it right, make it fast. "*  
+> — **Kent Beck**
 
 </div>
 
 ---
 
-## 📌 Latest Digest Snapshot (`2026-11-11`)
+## 📌 Latest Digest Snapshot (`2026-11-12`)
 
-### 💡 Today I Learned: Database & SQL
-#### Avoid `OFFSET` for Large Pagination (Keyset / Cursor Pagination)
+### 💡 Today I Learned: Docker Best Practices
+#### Use Multi-Stage Builds to Minimize Image Attack Surface
 
-`LIMIT 20 OFFSET 100000` forces the database engine to scan 100,020 rows and discard the first 100,000, causing severe I/O bottlenecks.
-Instead, use **Keyset Pagination (Seek method)**:
-```sql
-SELECT id, title, created_at 
-FROM posts 
-WHERE id > 100000 
-ORDER BY id ASC 
-LIMIT 20;
+Never ship compilers, build tools, or source code caches into production containers:
+```dockerfile
+# Stage 1: Build
+FROM golang:1.22-alpine AS builder
+WORKDIR /app
+COPY . .
+RUN go build -ldflags="-s -w" -o server .
+
+# Stage 2: Minimal Runtime
+FROM scratch
+COPY --from=builder /app/server /server
+ENTRYPOINT ["/server"]
 ```
-This utilizes the B-Tree primary index directly in O(log N) lookup time.
+Result: Image shrinks from 800MB+ to under 15MB with minimal CVE vulnerabilities.
 
 ---
 
 ### 🔥 GitHub Trending Spotlight
-- ⭐ [**codecrafters-io/build-your-own-x**](https://github.com/codecrafters-io/build-your-own-x) (`Markdown` | **★ 561,646**)
+- ⭐ [**codecrafters-io/build-your-own-x**](https://github.com/codecrafters-io/build-your-own-x) (`Markdown` | **★ 561,929**)
   > Master programming by recreating your favorite technologies from scratch.
 
-- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 498,017**)
+- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 498,319**)
   > A collective list of free APIs
 
-- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 458,959**)
+- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 459,010**)
   > freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.
 
-- ⭐ [**morluto/rea**](https://github.com/morluto/rea) (`TypeScript` | **★ 450,503**)
+- ⭐ [**morluto/rea**](https://github.com/morluto/rea) (`TypeScript` | **★ 453,297**)
   > Reverse engineer anything with agents, from app behavior down to native binaries.
 
-- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 401,472**)
+- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 401,444**)
   > :books: Freely available programming books
 
 
@@ -57,26 +61,26 @@ This utilizes the B-Tree primary index directly in O(log N) lookup time.
 
 ### 📰 Tech Radar Highlights
 #### 🌐 Hacker News Top Discussions
-- [**After 7 months, Glasswing overwelms maintainers with underwhelming findings**](https://www.vulncheck.com/blog/anthropic-glasswing-november-update) · `351 pts` · *by panic*
-- [**Scion is back and is going to sell a kei truck in America**](https://www.theautopian.com/scion-is-back-and-its-going-to-sell-a-freaking-kei-truck-in-america/) · `390 pts` · *by NaOH*
-- [**A great old-timey game-programming hack (2013)**](https://blog.moertel.com/posts/2013-12-14-great-old-timey-game-programming-hack.html) · `65 pts` · *by palsecam*
-- [**.name Grandfathered**](https://neil.fraser.name/news/2026/11/10/) · `729 pts` · *by p4bl0*
+- [**93% of paint splatters are valid Perl programs (2019)**](https://www.mcmillen.dev/sigbovik/) · `301 pts` · *by zenincognito*
+- [**Tim Peters has died**](https://discuss.python.org/t/in-memoriam-tim-peters-1952-2026/110028) · `1025 pts` · *by ayhanfuat*
+- [**AWS emulator**](https://github.com/aws/aws-emulator) · `765 pts` · *by super_linear*
+- [**Critical RCE Vulnerability in Apache HTTP Server**](https://www.wiz.io/blog/cve-2026-119618-rce-apache-http-server-vulnerability) · `82 pts` · *by soheilpro*
 
 #### ✍️ Dev.to Trending Community Reads
-- [**Ask More of Your UI**](https://dev.to/dailycontext/ask-more-of-your-ui-2nf7) `#ai` `#agents` `#webdev` · *by Ben Halpern*
-- [**Detecting Flaky Tests and Finding Their Root Causes with Strands Agents and Gemini**](https://dev.to/m4rri4nne/detecting-flaky-tests-and-finding-their-root-causes-with-strands-agents-and-gemini-4kan) `#ai` `#testing` `#python` · *by Alicia Marianne Gonçalves*
-- [**I Used gp-grid to Build a React Food Festival App with Advanced Data Grid Features**](https://dev.to/hadil/i-used-gp-grid-to-build-a-react-food-festival-app-with-advanced-data-grid-features-3l22) `#webdev` `#programming` `#react` · *by Hadil Ben Abdallah*
-- [**Stop Trusting npm Scans: Run Untrusted Packages in an Isolated AWS Sandbox**](https://dev.to/aws-builders/stop-trusting-npm-scans-run-untrusted-packages-in-an-isolated-aws-sandbox-cmm) `#aws` `#ai` `#discuss` · *by Sarvar Nadaf*
+- [**We Keep Hearing About AI Productivity. The QA Group Chat Told a Different Story.**](https://dev.to/xulingfeng/we-keep-hearing-about-ai-productivity-the-qa-group-chat-told-a-different-story-2nma) `#ai` `#discuss` `#career` · *by xulingfeng*
+- [**One Year on DEV.to, 109 Articles Later**](https://dev.to/dannwaneri/one-year-on-devto-109-articles-later-p31) `#devto` `#community` · *by Daniel Nwaneri*
+- [**Meet type-tune! 🦀 Give Your TypeScript Types a Better Home! 😸**](https://dev.to/necoz/meet-type-tune-give-your-typescript-types-a-better-home-1p6l) `#rust` `#typescript` `#showdev` · *by nyaomaru*
+- [**AI can write code, but the magic of a first project is unmatched! 🗽**](https://dev.to/necoz/ai-can-write-code-but-the-magic-of-a-first-project-is-unmatched-30c4) `#html` `#programming` `#javascript` · *by Sᴛᴀʀ⭐*
 
 ---
 
 ### 📊 Crypto & Market Pulse
 | Asset | Symbol | Price (USD) | 24h Trend |
 | :--- | :--- | :--- | :--- |
-| **Bitcoin** | `BTC` | $73,718.00 | 🔴 `-1.22%` |
-| **Ethereum** | `ETH` | $2,067.00 | 🔴 `-2.34%` |
-| **Solana** | `SOL` | $83.04 | 🔴 `-3.20%` |
-| **BNB** | `BNB` | $681.26 | 🔴 `-1.03%` |
+| **Bitcoin** | `BTC` | $73,476.00 | 🔴 `-0.39%` |
+| **Ethereum** | `ETH` | $2,043.09 | 🔴 `-1.13%` |
+| **Solana** | `SOL` | $82.86 | 🔴 `-0.32%` |
+| **BNB** | `BNB` | $673.79 | 🔴 `-1.00%` |
 
 ---
 
@@ -85,6 +89,7 @@ This utilizes the B-Tree primary index directly in O(log N) lookup time.
 <details>
 <summary><b>Click to expand past digests</b></summary>
 
+- 📄 [2026-11-12](digest/2026/11/2026-11-12.md)
 - 📄 [2026-11-11](digest/2026/11/2026-11-11.md)
 - 📄 [2026-11-10](digest/2026/11/2026-11-10.md)
 - 📄 [2026-11-09](digest/2026/11/2026-11-09.md)
@@ -99,7 +104,6 @@ This utilizes the B-Tree primary index directly in O(log N) lookup time.
 - 📄 [2026-10-31](digest/2026/10/2026-10-31.md)
 - 📄 [2026-10-30](digest/2026/10/2026-10-30.md)
 - 📄 [2026-10-29](digest/2026/10/2026-10-29.md)
-- 📄 [2026-10-28](digest/2026/10/2026-10-28.md)
 
 </details>
 
