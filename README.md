@@ -4,56 +4,47 @@
 
 ![Daily Updates](https://img.shields.io/badge/Daily_Update-Active-brightgreen?style=for-the-badge&logo=github-actions)
 ![Curated Content](https://img.shields.io/badge/Content-Tech_Radar_%26_TIL-blue?style=for-the-badge)
-![Status](https://img.shields.io/badge/Last_Sync-2026-11-12-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Last_Sync-2026-11-13-orange?style=for-the-badge)
 
 <p align="center">
   <b>A curated daily engineering digest, open-source radar, and Today I Learned (TIL) knowledge base.</b><br>
   <i>Maintained automatically via aaPanel / VPS cron & local runner.</i>
 </p>
 
-> *" Make it work, make it right, make it fast. "*  
-> — **Kent Beck**
+> *" Premature optimization is the root of all evil. "*  
+> — **Donald Knuth**
 
 </div>
 
 ---
 
-## 📌 Latest Digest Snapshot (`2026-11-12`)
+## 📌 Latest Digest Snapshot (`2026-11-13`)
 
-### 💡 Today I Learned: Docker Best Practices
-#### Use Multi-Stage Builds to Minimize Image Attack Surface
+### 💡 Today I Learned: Architecture & API
+#### Design Idempotent APIs with `Idempotency-Key`
 
-Never ship compilers, build tools, or source code caches into production containers:
-```dockerfile
-# Stage 1: Build
-FROM golang:1.22-alpine AS builder
-WORKDIR /app
-COPY . .
-RUN go build -ldflags="-s -w" -o server .
-
-# Stage 2: Minimal Runtime
-FROM scratch
-COPY --from=builder /app/server /server
-ENTRYPOINT ["/server"]
-```
-Result: Image shrinks from 800MB+ to under 15MB with minimal CVE vulnerabilities.
+Payment gateways and state-mutating POST endpoints must prevent duplicate execution due to client retries or network drops.
+Accept a client-generated UUID in the `Idempotency-Key` header:
+1. Cache the request status in Redis: `SET key uuid NX EX 86400`.
+2. If key exists, return the cached previous response immediately.
+3. If new, process the request, store the response in Redis, and return.
 
 ---
 
 ### 🔥 GitHub Trending Spotlight
-- ⭐ [**codecrafters-io/build-your-own-x**](https://github.com/codecrafters-io/build-your-own-x) (`Markdown` | **★ 561,929**)
+- ⭐ [**codecrafters-io/build-your-own-x**](https://github.com/codecrafters-io/build-your-own-x) (`Markdown` | **★ 562,184**)
   > Master programming by recreating your favorite technologies from scratch.
 
-- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 498,319**)
+- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 498,578**)
   > A collective list of free APIs
 
-- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 459,010**)
+- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 459,064**)
   > freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.
 
-- ⭐ [**morluto/rea**](https://github.com/morluto/rea) (`TypeScript` | **★ 453,297**)
+- ⭐ [**morluto/rea**](https://github.com/morluto/rea) (`TypeScript` | **★ 455,719**)
   > Reverse engineer anything with agents, from app behavior down to native binaries.
 
-- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 401,444**)
+- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 401,511**)
   > :books: Freely available programming books
 
 
@@ -61,26 +52,26 @@ Result: Image shrinks from 800MB+ to under 15MB with minimal CVE vulnerabilities
 
 ### 📰 Tech Radar Highlights
 #### 🌐 Hacker News Top Discussions
-- [**93% of paint splatters are valid Perl programs (2019)**](https://www.mcmillen.dev/sigbovik/) · `301 pts` · *by zenincognito*
-- [**Tim Peters has died**](https://discuss.python.org/t/in-memoriam-tim-peters-1952-2026/110028) · `1025 pts` · *by ayhanfuat*
-- [**AWS emulator**](https://github.com/aws/aws-emulator) · `765 pts` · *by super_linear*
-- [**Critical RCE Vulnerability in Apache HTTP Server**](https://www.wiz.io/blog/cve-2026-119618-rce-apache-http-server-vulnerability) · `82 pts` · *by soheilpro*
+- [**Jensen Huang resigns**](https://apnews.com/article/nvidia-megaspeed-china-singapore-huang-5403f152a601cf82ce939f1d24fffa0f) · `3179 pts` · *by lldb*
+- [**Switcher (2004)**](https://folklore.org/Switcher.html) · `50 pts` · *by sammatilda*
+- [**Rust 1.100**](https://blog.rust-lang.org/2026/11/12/Rust-1.100.0/) · `531 pts` · *by mbStavola*
+- [**Edge0-145B: Frontier AI Capabilities on Your Own Computer**](https://edge0.ai/blog/introducing-edge0-145b-frontier-ai-capabilities-on-your-own-computer) · `145 pts` · *by sroussey*
 
 #### ✍️ Dev.to Trending Community Reads
-- [**We Keep Hearing About AI Productivity. The QA Group Chat Told a Different Story.**](https://dev.to/xulingfeng/we-keep-hearing-about-ai-productivity-the-qa-group-chat-told-a-different-story-2nma) `#ai` `#discuss` `#career` · *by xulingfeng*
-- [**One Year on DEV.to, 109 Articles Later**](https://dev.to/dannwaneri/one-year-on-devto-109-articles-later-p31) `#devto` `#community` · *by Daniel Nwaneri*
-- [**Meet type-tune! 🦀 Give Your TypeScript Types a Better Home! 😸**](https://dev.to/necoz/meet-type-tune-give-your-typescript-types-a-better-home-1p6l) `#rust` `#typescript` `#showdev` · *by nyaomaru*
-- [**AI can write code, but the magic of a first project is unmatched! 🗽**](https://dev.to/necoz/ai-can-write-code-but-the-magic-of-a-first-project-is-unmatched-30c4) `#html` `#programming` `#javascript` · *by Sᴛᴀʀ⭐*
+- [**Long Live Rails**](https://dev.to/ben/long-live-rails-3p21) `#rails` `#ruby` `#rust` · *by Ben Halpern*
+- [**MCP Is Dead Simple. And That's Exactly the Problem**](https://dev.to/sylwia-lask/mcp-is-dead-simple-and-thats-exactly-the-problem-5811) `#mcp` `#ai` `#agents` · *by Sylwia Laskowska*
+- [**A 10 years old developer who has become a DEV.to Trusted Member! 😱**](https://dev.to/necoz/a-10-years-old-developer-who-has-become-a-devto-trusted-member-49c8) `#discuss` `#trusted` `#beginners` · *by Sᴛᴀʀ⭐*
+- [**Your MCP Servers Are Silently Draining Your Context Window: The Hidden Cost of Tool-Heavy AI Agents**](https://dev.to/necoz/your-mcp-servers-are-silently-draining-your-context-window-the-hidden-cost-of-tool-heavy-ai-agents-fkl) `#ai` `#typescript` `#opensource` · *by 𝗝𝗼𝗵𝗻*
 
 ---
 
 ### 📊 Crypto & Market Pulse
 | Asset | Symbol | Price (USD) | 24h Trend |
 | :--- | :--- | :--- | :--- |
-| **Bitcoin** | `BTC` | $73,476.00 | 🔴 `-0.39%` |
-| **Ethereum** | `ETH` | $2,043.09 | 🔴 `-1.13%` |
-| **Solana** | `SOL` | $82.86 | 🔴 `-0.32%` |
-| **BNB** | `BNB` | $673.79 | 🔴 `-1.00%` |
+| **Bitcoin** | `BTC` | $68,400.00 | 🔴 `-7.05%` |
+| **Ethereum** | `ETH` | $1,922.19 | 🔴 `-6.04%` |
+| **Solana** | `SOL` | $78.34 | 🔴 `-5.49%` |
+| **BNB** | `BNB` | $631.63 | 🔴 `-6.41%` |
 
 ---
 
@@ -89,6 +80,7 @@ Result: Image shrinks from 800MB+ to under 15MB with minimal CVE vulnerabilities
 <details>
 <summary><b>Click to expand past digests</b></summary>
 
+- 📄 [2026-11-13](digest/2026/11/2026-11-13.md)
 - 📄 [2026-11-12](digest/2026/11/2026-11-12.md)
 - 📄 [2026-11-11](digest/2026/11/2026-11-11.md)
 - 📄 [2026-11-10](digest/2026/11/2026-11-10.md)
@@ -103,7 +95,6 @@ Result: Image shrinks from 800MB+ to under 15MB with minimal CVE vulnerabilities
 - 📄 [2026-11-01](digest/2026/11/2026-11-01.md)
 - 📄 [2026-10-31](digest/2026/10/2026-10-31.md)
 - 📄 [2026-10-30](digest/2026/10/2026-10-30.md)
-- 📄 [2026-10-29](digest/2026/10/2026-10-29.md)
 
 </details>
 
