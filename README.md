@@ -4,77 +4,78 @@
 
 ![Daily Updates](https://img.shields.io/badge/Daily_Update-Active-brightgreen?style=for-the-badge&logo=github-actions)
 ![Curated Content](https://img.shields.io/badge/Content-Tech_Radar_%26_TIL-blue?style=for-the-badge)
-![Status](https://img.shields.io/badge/Last_Sync-2026-11-16-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Last_Sync-2026-11-17-orange?style=for-the-badge)
 
 <p align="center">
   <b>A curated daily engineering digest, open-source radar, and Today I Learned (TIL) knowledge base.</b><br>
   <i>Maintained automatically via aaPanel / VPS cron & local runner.</i>
 </p>
 
-> *" Talk is cheap. Show me the code. "*  
-> — **Linus Torvalds**
+> *" Simplicity is prerequisite for reliability. "*  
+> — **Edsger W. Dijkstra**
 
 </div>
 
 ---
 
-## 📌 Latest Digest Snapshot (`2026-11-16`)
+## 📌 Latest Digest Snapshot (`2026-11-17`)
 
-### 💡 Today I Learned: Git Pro Tip
-#### Git Worktree: Work on Multiple Branches Without Stashing
+### 💡 Today I Learned: Python Optimization
+#### Use `__slots__` to Slash Memory Usage in Class Instances
 
-Instead of stashing uncommitted changes or cloning the repo multiple times when an urgent bugfix arrives, use `git worktree`:
-```bash
-git worktree add ../hotfix-branch hotfix
-# Now you have an isolated directory linked to the hotfix branch!
-# When done:
-git worktree remove ../hotfix-branch
+When creating millions of lightweight objects, Python dictionaries (`__dict__`) add massive memory overhead. Define `__slots__`:
+```python
+class Coordinate:
+    __slots__ = ('x', 'y')
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
 ```
-This saves tons of context switching and avoids messing up your working tree.
+This prevents dynamic attribute creation and can reduce memory footprint by up to **60-70%**.
 
 ---
 
 ### 🔥 GitHub Trending Spotlight
-- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 499,349**)
+- ⭐ [**codecrafters-io/build-your-own-x**](https://github.com/codecrafters-io/build-your-own-x) (`Markdown` | **★ 563,237**)
+  > Master programming by recreating your favorite technologies from scratch.
+
+- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 499,675**)
   > A collective list of free APIs
 
-- ⭐ [**morluto/rea**](https://github.com/morluto/rea) (`TypeScript` | **★ 462,303**)
+- ⭐ [**morluto/rea**](https://github.com/morluto/rea) (`TypeScript` | **★ 464,679**)
   > Reverse engineer anything with agents, from app behavior down to native binaries.
 
-- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 459,183**)
+- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 459,234**)
   > freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.
 
-- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 401,655**)
+- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 401,727**)
   > :books: Freely available programming books
-
-- ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 394,550**)
-  > The AI that really does things. Any OS. Any Platform. The lobster way. 🦞 
 
 
 ---
 
 ### 📰 Tech Radar Highlights
 #### 🌐 Hacker News Top Discussions
-- [**Universal XSS in uBlock Origin from website-driven element picker**](https://iter.ca/post/ubo-uxss/) · `161 pts` · *by zaik*
-- [**Qwen4-Max**](https://qwen.ai/blog?id=qwen4-max) · `216 pts` · *by ilreb*
-- [**Old Bitly links are being hijacked**](https://ransomnews.com/burger-king-tweet-bitly-link-hijack-2026/) · `217 pts` · *by hspeiser*
-- [**What's Next for Nvidia?**](https://steveblank.com/2026/11/15/whats-next-for-nvidia/) · `142 pts` · *by zdw*
+- [**Carnegie Mellon is putting computer science courses on YouTube for free**](https://www.cs.cmu.edu/learn/) · `1173 pts` · *by pcompeau*
+- [**Windows 11 Is Collecting Data on Which Coding Agents and Developer Tools You Use**](https://xusheng.dev/posts/windows-coding-agent-telemetry/) · `454 pts` · *by cwaffles*
+- [**BugMeNot has closed**](https://www.bugmenot.com/) · `451 pts` · *by lode*
+- [**Optimizely compromised, served malware on Zoom, GitLab**](https://blog.report-uri.com/worlds-largest-brands-infected-with-malware-via-optimizely/) · `248 pts` · *by kristjansson*
 
 #### ✍️ Dev.to Trending Community Reads
-- [**Avengers: Doomsday is 5 weeks away, so I built hexagon README badges. What are you building?**](https://dev.to/amananandrai/avengers-doomsday-is-5-weeks-away-so-i-built-hexagon-readme-badges-what-are-you-building-32d6) `#discuss` `#watercooler` `#webdev` · *by amananandrai*
-- [**Dash: An Endless Runner That Races Through Your City**](https://dev.to/codenameone/dash-an-endless-runner-that-races-through-your-city-57o7) `#java` `#mobile` `#android` · *by Shai Almog*
-- [**Devcon 8 Mumbai: Four Days at Ethereum's Biggest Builder Gathering**](https://dev.to/yashksaini/devcon-8-mumbai-four-days-at-ethereums-biggest-builder-gathering-3jn) `#ethereum` `#productivity` `#opensource` · *by Yash Kumar Saini*
-- [**nginx 1.31's json_set directive rejects a bad webhook payload about 13 times faster than forwarding it**](https://dev.to/alexgeorgiev17/nginx-131s-jsonset-directive-rejects-a-bad-webhook-payload-about-13-times-faster-than-forwarding-3b00) `#nginx` `#devops` `#performance` · *by Alex Georgiev*
+- [**What does DEV stand for?**](https://dev.to/devengers/what-does-dev-stand-for-2kg9) `#discuss` `#community` `#watercooler` · *by FrancisTRᴅᴇᴠ*
+- [**Your 100% Lighthouse A11y Score Is a Lie: The Visual Architecture Guide to the Browser Accessibility Tree**](https://dev.to/smtahosin/your-100-lighthouse-a11y-score-is-a-lie-the-visual-architecture-guide-to-the-browser-50l7) `#a11y` `#webdev` `#frontend` · *by S M Tahosin*
+- [**High or Low Thinking? Gemini 4 and Gemma 4 on Hard Math, Cost First**](https://dev.to/gde/high-or-low-thinking-gemini-4-and-gemma-4-on-hard-math-cost-first-3091) `#gemini` `#gemma` `#benchmark` · *by xbill*
+- [**What are your goals for the week? #205**](https://dev.to/jarvisscript/what-are-your-goals-for-the-week-205-22pg) `#career` `#discuss` `#productivity` · *by Chris Jarvis*
 
 ---
 
 ### 📊 Crypto & Market Pulse
 | Asset | Symbol | Price (USD) | 24h Trend |
 | :--- | :--- | :--- | :--- |
-| **Bitcoin** | `BTC` | $64,842.00 | 🟢 `+0.08%` |
-| **Ethereum** | `ETH` | $1,818.53 | 🟢 `+0.19%` |
-| **Solana** | `SOL` | $71.59 | 🟢 `+0.81%` |
-| **BNB** | `BNB` | $590.14 | 🔴 `-0.70%` |
+| **Bitcoin** | `BTC` | $64,540.00 | 🔴 `-0.02%` |
+| **Ethereum** | `ETH` | $1,827.17 | 🟢 `+0.84%` |
+| **Solana** | `SOL` | $72.63 | 🟢 `+2.37%` |
+| **BNB** | `BNB` | $591.20 | 🟢 `+0.24%` |
 
 ---
 
@@ -83,6 +84,7 @@ This saves tons of context switching and avoids messing up your working tree.
 <details>
 <summary><b>Click to expand past digests</b></summary>
 
+- 📄 [2026-11-17](digest/2026/11/2026-11-17.md)
 - 📄 [2026-11-16](digest/2026/11/2026-11-16.md)
 - 📄 [2026-11-15](digest/2026/11/2026-11-15.md)
 - 📄 [2026-11-14](digest/2026/11/2026-11-14.md)
@@ -97,7 +99,6 @@ This saves tons of context switching and avoids messing up your working tree.
 - 📄 [2026-11-05](digest/2026/11/2026-11-05.md)
 - 📄 [2026-11-04](digest/2026/11/2026-11-04.md)
 - 📄 [2026-11-03](digest/2026/11/2026-11-03.md)
-- 📄 [2026-11-02](digest/2026/11/2026-11-02.md)
 
 </details>
 
