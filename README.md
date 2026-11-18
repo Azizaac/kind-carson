@@ -4,51 +4,48 @@
 
 ![Daily Updates](https://img.shields.io/badge/Daily_Update-Active-brightgreen?style=for-the-badge&logo=github-actions)
 ![Curated Content](https://img.shields.io/badge/Content-Tech_Radar_%26_TIL-blue?style=for-the-badge)
-![Status](https://img.shields.io/badge/Last_Sync-2026-11-17-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Last_Sync-2026-11-18-orange?style=for-the-badge)
 
 <p align="center">
   <b>A curated daily engineering digest, open-source radar, and Today I Learned (TIL) knowledge base.</b><br>
   <i>Maintained automatically via aaPanel / VPS cron & local runner.</i>
 </p>
 
-> *" Simplicity is prerequisite for reliability. "*  
-> — **Edsger W. Dijkstra**
+> *" Any fool can write code that a computer can understand. Good programmers write code that humans can understand. "*  
+> — **Martin Fowler**
 
 </div>
 
 ---
 
-## 📌 Latest Digest Snapshot (`2026-11-17`)
+## 📌 Latest Digest Snapshot (`2026-11-18`)
 
-### 💡 Today I Learned: Python Optimization
-#### Use `__slots__` to Slash Memory Usage in Class Instances
+### 💡 Today I Learned: Linux & DevOps
+#### Inspect Open Network Ports Without Installing `netstat`
 
-When creating millions of lightweight objects, Python dictionaries (`__dict__`) add massive memory overhead. Define `__slots__`:
-```python
-class Coordinate:
-    __slots__ = ('x', 'y')
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
+On modern Linux distributions, `ss` is the modern replacement for deprecated `netstat`:
+```bash
+# -t (TCP), -u (UDP), -l (Listening), -p (Process), -n (Numeric ports)
+sudo ss -tulpn
 ```
-This prevents dynamic attribute creation and can reduce memory footprint by up to **60-70%**.
+It is much faster than `netstat` because it reads socket stats directly from kernel space via netlink.
 
 ---
 
 ### 🔥 GitHub Trending Spotlight
-- ⭐ [**codecrafters-io/build-your-own-x**](https://github.com/codecrafters-io/build-your-own-x) (`Markdown` | **★ 563,237**)
+- ⭐ [**codecrafters-io/build-your-own-x**](https://github.com/codecrafters-io/build-your-own-x) (`Markdown` | **★ 563,522**)
   > Master programming by recreating your favorite technologies from scratch.
 
-- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 499,675**)
+- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 499,914**)
   > A collective list of free APIs
 
-- ⭐ [**morluto/rea**](https://github.com/morluto/rea) (`TypeScript` | **★ 464,679**)
+- ⭐ [**morluto/rea**](https://github.com/morluto/rea) (`TypeScript` | **★ 466,767**)
   > Reverse engineer anything with agents, from app behavior down to native binaries.
 
-- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 459,234**)
+- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 459,272**)
   > freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.
 
-- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 401,727**)
+- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 401,786**)
   > :books: Freely available programming books
 
 
@@ -56,26 +53,26 @@ This prevents dynamic attribute creation and can reduce memory footprint by up t
 
 ### 📰 Tech Radar Highlights
 #### 🌐 Hacker News Top Discussions
-- [**Carnegie Mellon is putting computer science courses on YouTube for free**](https://www.cs.cmu.edu/learn/) · `1173 pts` · *by pcompeau*
-- [**Windows 11 Is Collecting Data on Which Coding Agents and Developer Tools You Use**](https://xusheng.dev/posts/windows-coding-agent-telemetry/) · `454 pts` · *by cwaffles*
-- [**BugMeNot has closed**](https://www.bugmenot.com/) · `451 pts` · *by lode*
-- [**Optimizely compromised, served malware on Zoom, GitLab**](https://blog.report-uri.com/worlds-largest-brands-infected-with-malware-via-optimizely/) · `248 pts` · *by kristjansson*
+- [**Java4Shell: RCE in OpenJDK when processing Base64**](https://calif.io/java4shell/) · `710 pts` · *by werrett*
+- [**ID.me terms required for IRS sign-in**](https://consumerrights.wiki/w/ID.me_terms_required_for_IRS_sign-in) · `254 pts` · *by DeepLogin*
+- [**Google's AI answers reducing search traffic by 40%**](https://revscope.co/blog/search-seo-geo-2026/) · `254 pts` · *by slashdev*
+- [**GPT‑6.2 Astra and Sol**](https://openai.com/index/introducing-gpt-6-2-astra-sol/) · `1188 pts` · *by jasondavies*
 
 #### ✍️ Dev.to Trending Community Reads
-- [**What does DEV stand for?**](https://dev.to/devengers/what-does-dev-stand-for-2kg9) `#discuss` `#community` `#watercooler` · *by FrancisTRᴅᴇᴠ*
-- [**Your 100% Lighthouse A11y Score Is a Lie: The Visual Architecture Guide to the Browser Accessibility Tree**](https://dev.to/smtahosin/your-100-lighthouse-a11y-score-is-a-lie-the-visual-architecture-guide-to-the-browser-50l7) `#a11y` `#webdev` `#frontend` · *by S M Tahosin*
-- [**High or Low Thinking? Gemini 4 and Gemma 4 on Hard Math, Cost First**](https://dev.to/gde/high-or-low-thinking-gemini-4-and-gemma-4-on-hard-math-cost-first-3091) `#gemini` `#gemma` `#benchmark` · *by xbill*
-- [**What are your goals for the week? #205**](https://dev.to/jarvisscript/what-are-your-goals-for-the-week-205-22pg) `#career` `#discuss` `#productivity` · *by Chris Jarvis*
+- [**DEVengers Weekly #1: The MCP Reality Check, Career Moats, and 25 Weeks on the Radar 🚀**](https://dev.to/devengers/devengers-weekly-1-the-mcp-reality-check-career-moats-and-25-weeks-on-the-radar-23ec) `#devengers` `#newsletter` `#opensource` · *by Dhruv Jani*
+- [**Could I Still Do This From Scratch?**](https://dev.to/dannwaneri/could-i-still-do-this-from-scratch-427h) `#ai` `#programming` `#career` · *by Daniel Nwaneri*
+- [**AI agents open 17 million pull requests a month. I built a gate that rejects the ones that lie.**](https://dev.to/aws-builders/ai-agents-open-17-million-pull-requests-a-month-i-built-a-gate-that-rejects-the-ones-that-lie-46n7) `#ai` `#aws` `#devops` · *by Sarvar Nadaf*
+- [**The Arrogance of Having Outgrown Arrogance**](https://dev.to/adamthedeveloper/the-arrogance-of-having-outgrown-arrogance-1pl1) `#career` `#learning` · *by Adam - The Developer ✨*
 
 ---
 
 ### 📊 Crypto & Market Pulse
 | Asset | Symbol | Price (USD) | 24h Trend |
 | :--- | :--- | :--- | :--- |
-| **Bitcoin** | `BTC` | $64,540.00 | 🔴 `-0.02%` |
-| **Ethereum** | `ETH` | $1,827.17 | 🟢 `+0.84%` |
-| **Solana** | `SOL` | $72.63 | 🟢 `+2.37%` |
-| **BNB** | `BNB` | $591.20 | 🟢 `+0.24%` |
+| **Bitcoin** | `BTC` | $64,629.00 | 🔴 `-0.24%` |
+| **Ethereum** | `ETH` | $1,809.86 | 🔴 `-1.29%` |
+| **Solana** | `SOL` | $75.14 | 🟢 `+3.35%` |
+| **BNB** | `BNB` | $591.76 | 🔴 `-0.25%` |
 
 ---
 
@@ -84,6 +81,7 @@ This prevents dynamic attribute creation and can reduce memory footprint by up t
 <details>
 <summary><b>Click to expand past digests</b></summary>
 
+- 📄 [2026-11-18](digest/2026/11/2026-11-18.md)
 - 📄 [2026-11-17](digest/2026/11/2026-11-17.md)
 - 📄 [2026-11-16](digest/2026/11/2026-11-16.md)
 - 📄 [2026-11-15](digest/2026/11/2026-11-15.md)
@@ -98,7 +96,6 @@ This prevents dynamic attribute creation and can reduce memory footprint by up t
 - 📄 [2026-11-06](digest/2026/11/2026-11-06.md)
 - 📄 [2026-11-05](digest/2026/11/2026-11-05.md)
 - 📄 [2026-11-04](digest/2026/11/2026-11-04.md)
-- 📄 [2026-11-03](digest/2026/11/2026-11-03.md)
 
 </details>
 
