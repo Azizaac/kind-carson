@@ -4,56 +4,47 @@
 
 ![Daily Updates](https://img.shields.io/badge/Daily_Update-Active-brightgreen?style=for-the-badge&logo=github-actions)
 ![Curated Content](https://img.shields.io/badge/Content-Tech_Radar_%26_TIL-blue?style=for-the-badge)
-![Status](https://img.shields.io/badge/Last_Sync-2026-11-20-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Last_Sync-2026-11-21-orange?style=for-the-badge)
 
 <p align="center">
   <b>A curated daily engineering digest, open-source radar, and Today I Learned (TIL) knowledge base.</b><br>
   <i>Maintained automatically via aaPanel / VPS cron & local runner.</i>
 </p>
 
-> *" Make it work, make it right, make it fast. "*  
-> — **Kent Beck**
+> *" Premature optimization is the root of all evil. "*  
+> — **Donald Knuth**
 
 </div>
 
 ---
 
-## 📌 Latest Digest Snapshot (`2026-11-20`)
+## 📌 Latest Digest Snapshot (`2026-11-21`)
 
-### 💡 Today I Learned: Docker Best Practices
-#### Use Multi-Stage Builds to Minimize Image Attack Surface
+### 💡 Today I Learned: Architecture & API
+#### Design Idempotent APIs with `Idempotency-Key`
 
-Never ship compilers, build tools, or source code caches into production containers:
-```dockerfile
-# Stage 1: Build
-FROM golang:1.22-alpine AS builder
-WORKDIR /app
-COPY . .
-RUN go build -ldflags="-s -w" -o server .
-
-# Stage 2: Minimal Runtime
-FROM scratch
-COPY --from=builder /app/server /server
-ENTRYPOINT ["/server"]
-```
-Result: Image shrinks from 800MB+ to under 15MB with minimal CVE vulnerabilities.
+Payment gateways and state-mutating POST endpoints must prevent duplicate execution due to client retries or network drops.
+Accept a client-generated UUID in the `Idempotency-Key` header:
+1. Cache the request status in Redis: `SET key uuid NX EX 86400`.
+2. If key exists, return the cached previous response immediately.
+3. If new, process the request, store the response in Redis, and return.
 
 ---
 
 ### 🔥 GitHub Trending Spotlight
-- ⭐ [**codecrafters-io/build-your-own-x**](https://github.com/codecrafters-io/build-your-own-x) (`Markdown` | **★ 563,987**)
+- ⭐ [**codecrafters-io/build-your-own-x**](https://github.com/codecrafters-io/build-your-own-x) (`Markdown` | **★ 564,179**)
   > Master programming by recreating your favorite technologies from scratch.
 
-- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 500,364**)
+- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 500,527**)
   > A collective list of free APIs
 
-- ⭐ [**morluto/rea**](https://github.com/morluto/rea) (`TypeScript` | **★ 470,327**)
+- ⭐ [**morluto/rea**](https://github.com/morluto/rea) (`TypeScript` | **★ 471,739**)
   > Reverse engineer anything with agents, from app behavior down to native binaries.
 
-- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 459,366**)
+- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 459,403**)
   > freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.
 
-- ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 394,859**)
+- ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 394,936**)
   > The AI that really does things. Any OS. Any Platform. The lobster way. 🦞 
 
 
@@ -61,26 +52,26 @@ Result: Image shrinks from 800MB+ to under 15MB with minimal CVE vulnerabilities
 
 ### 📰 Tech Radar Highlights
 #### 🌐 Hacker News Top Discussions
-- [**OpenSSL: Buffer overflow in EVP_EncodeBlock() (CVE-2026-121481, CVSS 9.8)**](https://github.com/openssl/openssl/pull/33652) · `90 pts` · *by JacobHenner*
-- [**GIMP now has UI tests**](https://www.gimp.org/news/2026/11/16/gimp-ui-tests/) · `31 pts` · *by qtqtqt*
-- [**Postgres 19 Repack: Faster, Built-In Table Bloat Cleanup**](https://www.snowflake.com/en/blog/engineering/postgres-19-repack-table-bloat/) · `37 pts` · *by craigkerstiens*
-- [**Vint Cerf on why TCP/IP was never patented**](https://seremot.com/p/vint-cerf-on-why-tcpip-was-never) · `68 pts` · *by emot*
+- [**Hurried Announcement: Alessandro Masullo GRH**](https://math216.wordpress.com/2026/11/20/hurried-announcement-alessandro-masullo-grh/) · `1798 pts` · *by jasondavies*
+- [**Levent Alpöge claims proof of the Generalized Riemann Hypothesis [pdf]**](https://alpo.ge/remark.pdf) · `2482 pts` · *by iamronaldo*
+- [**Inkling 2 Mini**](https://thinkingmachines.ai/news/inkling-2-mini/) · `849 pts` · *by jasondavies*
+- [**NINLIVE: The Nine Inch Nails live archive**](https://ninlive.com/) · `189 pts` · *by CharlesW*
 
 #### ✍️ Dev.to Trending Community Reads
-- [**My First GitHub Issue & My First Forem (DEV.to) Issue 🚀**](https://dev.to/necoz/my-first-github-issue-my-first-forem-devto-issue-5eap) `#discuss` `#github` `#opensource` · *by Sᴛᴀʀ⭐*
-- [**What team-wide AI adoption actually takes**](https://dev.to/peter/what-team-wide-ai-adoption-actually-takes-1gbh) `#ai` `#productivity` `#discuss` · *by Peter Kim Frank*
-- [**Adopt Pre-Existing Docker Containers with Zero Downtime: Reverse-Engineering docker-compose.yml in Gubernator v4.0**](https://dev.to/gde/adopt-pre-existing-docker-containers-with-zero-downtime-reverse-engineering-docker-composeyml-in-3cic) `#devops` `#docker` `#opensource` · *by Mario Ezquerro*
-- [**Maintaining open source projects up to date with Renovate and Antigravity**](https://dev.to/gde/maintaining-open-source-projects-up-to-date-with-renovate-and-antigravity-3haj) `#antigravity` `#renovate` `#development` · *by Jean-Phi Baconnais*
+- [**Tell us your story, and we might read it on the CodeNewbie Podcast 🎙️**](https://dev.to/codenewbie/tell-us-your-story-and-we-might-read-it-on-the-codenewbie-podcast-2840) `#codenewbie` `#ai` `#beginners` · *by Lauren Lee👩🏼‍💻*
+- [**Dev Opportunity Radar #26: $85K Claude Corps Fellowship, a16z FDE Fellowship, and Reddit's $35K Game Hackathon**](https://dev.to/devengers/dev-opportunity-radar-26-85k-claude-corps-fellowship-a16z-fde-fellowship-and-reddits-35k-2k2) `#discuss` `#community` `#opportunities` · *by Hemapriya Kanagala*
+- [**I can't believe the podcast I learned to code with is back!**](https://dev.to/codenewbie/i-cant-believe-the-podcast-i-learned-to-code-with-is-back-2gi5) `#codenewbie` `#podcast` `#ai` · *by Lauren Lee👩🏼‍💻*
+- [**Agentic engineering a smart home energy system with Antigravity and Gemini 4**](https://dev.to/googleai/agentic-engineering-a-smart-home-energy-system-with-antigravity-and-gemini-4-53md) `#ai` `#antigravity` `#smarthome` · *by Remigiusz Samborski*
 
 ---
 
 ### 📊 Crypto & Market Pulse
 | Asset | Symbol | Price (USD) | 24h Trend |
 | :--- | :--- | :--- | :--- |
-| **Bitcoin** | `BTC` | $61,619.00 | 🔴 `-2.63%` |
-| **Ethereum** | `ETH` | $1,728.28 | 🔴 `-3.83%` |
-| **Solana** | `SOL` | $72.29 | 🔴 `-2.93%` |
-| **BNB** | `BNB` | $567.91 | 🔴 `-3.10%` |
+| **Bitcoin** | `BTC` | $55,788.00 | 🔴 `-9.39%` |
+| **Ethereum** | `ETH` | $1,561.04 | 🔴 `-9.63%` |
+| **Solana** | `SOL` | $65.48 | 🔴 `-9.33%` |
+| **BNB** | `BNB` | $512.68 | 🔴 `-9.71%` |
 
 ---
 
@@ -89,6 +80,7 @@ Result: Image shrinks from 800MB+ to under 15MB with minimal CVE vulnerabilities
 <details>
 <summary><b>Click to expand past digests</b></summary>
 
+- 📄 [2026-11-21](digest/2026/11/2026-11-21.md)
 - 📄 [2026-11-20](digest/2026/11/2026-11-20.md)
 - 📄 [2026-11-19](digest/2026/11/2026-11-19.md)
 - 📄 [2026-11-18](digest/2026/11/2026-11-18.md)
@@ -103,7 +95,6 @@ Result: Image shrinks from 800MB+ to under 15MB with minimal CVE vulnerabilities
 - 📄 [2026-11-09](digest/2026/11/2026-11-09.md)
 - 📄 [2026-11-08](digest/2026/11/2026-11-08.md)
 - 📄 [2026-11-07](digest/2026/11/2026-11-07.md)
-- 📄 [2026-11-06](digest/2026/11/2026-11-06.md)
 
 </details>
 
