@@ -4,74 +4,76 @@
 
 ![Daily Updates](https://img.shields.io/badge/Daily_Update-Active-brightgreen?style=for-the-badge&logo=github-actions)
 ![Curated Content](https://img.shields.io/badge/Content-Tech_Radar_%26_TIL-blue?style=for-the-badge)
-![Status](https://img.shields.io/badge/Last_Sync-2026-11-21-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Last_Sync-2026-11-22-orange?style=for-the-badge)
 
 <p align="center">
   <b>A curated daily engineering digest, open-source radar, and Today I Learned (TIL) knowledge base.</b><br>
   <i>Maintained automatically via aaPanel / VPS cron & local runner.</i>
 </p>
 
-> *" Premature optimization is the root of all evil. "*  
-> — **Donald Knuth**
+> *" Software is a great combination between artistry and engineering. "*  
+> — **Bill Gates**
 
 </div>
 
 ---
 
-## 📌 Latest Digest Snapshot (`2026-11-21`)
+## 📌 Latest Digest Snapshot (`2026-11-22`)
 
-### 💡 Today I Learned: Architecture & API
-#### Design Idempotent APIs with `Idempotency-Key`
+### 💡 Today I Learned: Security Engineering
+#### Timing Attacks & Safe String Comparison
 
-Payment gateways and state-mutating POST endpoints must prevent duplicate execution due to client retries or network drops.
-Accept a client-generated UUID in the `Idempotency-Key` header:
-1. Cache the request status in Redis: `SET key uuid NX EX 86400`.
-2. If key exists, return the cached previous response immediately.
-3. If new, process the request, store the response in Redis, and return.
+Comparing secret hashes or API tokens using standard `==` is vulnerable to timing attacks (it exits early on the first mismatched byte).
+In Python, always use `hmac.compare_digest`:
+```python
+import hmac
+is_valid = hmac.compare_digest(user_token, secret_token)
+```
+This runs in constant time, preventing attackers from measuring response latency to deduce tokens.
 
 ---
 
 ### 🔥 GitHub Trending Spotlight
-- ⭐ [**codecrafters-io/build-your-own-x**](https://github.com/codecrafters-io/build-your-own-x) (`Markdown` | **★ 564,179**)
+- ⭐ [**codecrafters-io/build-your-own-x**](https://github.com/codecrafters-io/build-your-own-x) (`Markdown` | **★ 564,506**)
   > Master programming by recreating your favorite technologies from scratch.
 
-- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 500,527**)
+- ⭐ [**public-apis/public-apis**](https://github.com/public-apis/public-apis) (`Python` | **★ 500,679**)
   > A collective list of free APIs
 
-- ⭐ [**morluto/rea**](https://github.com/morluto/rea) (`TypeScript` | **★ 471,739**)
+- ⭐ [**morluto/rea**](https://github.com/morluto/rea) (`TypeScript` | **★ 473,004**)
   > Reverse engineer anything with agents, from app behavior down to native binaries.
 
-- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 459,403**)
+- ⭐ [**freeCodeCamp/freeCodeCamp**](https://github.com/freeCodeCamp/freeCodeCamp) (`TypeScript` | **★ 459,457**)
   > freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.
 
-- ⭐ [**openclaw/openclaw**](https://github.com/openclaw/openclaw) (`TypeScript` | **★ 394,936**)
-  > The AI that really does things. Any OS. Any Platform. The lobster way. 🦞 
+- ⭐ [**EbookFoundation/free-programming-books**](https://github.com/EbookFoundation/free-programming-books) (`Python` | **★ 402,046**)
+  > :books: Freely available programming books
 
 
 ---
 
 ### 📰 Tech Radar Highlights
 #### 🌐 Hacker News Top Discussions
-- [**Hurried Announcement: Alessandro Masullo GRH**](https://math216.wordpress.com/2026/11/20/hurried-announcement-alessandro-masullo-grh/) · `1798 pts` · *by jasondavies*
-- [**Levent Alpöge claims proof of the Generalized Riemann Hypothesis [pdf]**](https://alpo.ge/remark.pdf) · `2482 pts` · *by iamronaldo*
-- [**Inkling 2 Mini**](https://thinkingmachines.ai/news/inkling-2-mini/) · `849 pts` · *by jasondavies*
-- [**NINLIVE: The Nine Inch Nails live archive**](https://ninlive.com/) · `189 pts` · *by CharlesW*
+- [**Toyota, Nissan, and Honda to Standardize Parts to Lower Costs**](https://www.caranddriver.com/news/a74490092/toyota-nissan-honda-standardize-parts-lower-costs/) · `76 pts` · *by zdw*
+- [**Pill to treat pancreatic cancer hailed as 'biggest breakthrough in decades'**](https://www.theguardian.com/society/2026/nov/20/pill-pancreatic-cancer-breakthrough-daraxonrasib) · `808 pts` · *by rafaelc*
+- [**Lean verification of the Riemann Hypothesis**](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/) · `919 pts` · *by g-b-r*
+- [**Inkling-2-Mini in 5.4 GB Memory**](https://github.com/ShinMegamiBoson/lookatmyquant) · `405 pts` · *by k__*
 
 #### ✍️ Dev.to Trending Community Reads
-- [**Tell us your story, and we might read it on the CodeNewbie Podcast 🎙️**](https://dev.to/codenewbie/tell-us-your-story-and-we-might-read-it-on-the-codenewbie-podcast-2840) `#codenewbie` `#ai` `#beginners` · *by Lauren Lee👩🏼‍💻*
-- [**Dev Opportunity Radar #26: $85K Claude Corps Fellowship, a16z FDE Fellowship, and Reddit's $35K Game Hackathon**](https://dev.to/devengers/dev-opportunity-radar-26-85k-claude-corps-fellowship-a16z-fde-fellowship-and-reddits-35k-2k2) `#discuss` `#community` `#opportunities` · *by Hemapriya Kanagala*
-- [**I can't believe the podcast I learned to code with is back!**](https://dev.to/codenewbie/i-cant-believe-the-podcast-i-learned-to-code-with-is-back-2gi5) `#codenewbie` `#podcast` `#ai` · *by Lauren Lee👩🏼‍💻*
-- [**Agentic engineering a smart home energy system with Antigravity and Gemini 4**](https://dev.to/googleai/agentic-engineering-a-smart-home-energy-system-with-antigravity-and-gemini-4-53md) `#ai` `#antigravity` `#smarthome` · *by Remigiusz Samborski*
+- [**The Chairs Are Back. The Coffee Is On. ☕**](https://dev.to/thethirdcup/the-chairs-are-back-the-coffee-is-on-243p) `#community` `#discuss` `#ai` · *by xulingfeng*
+- [**Monuments of India, Part 3: Sixteen Statues Sculpted from Photographs, a Rebuilt Mysore Palace and More**](https://dev.to/amananandrai/monuments-of-india-part-3-sixteen-statues-sculpted-from-photographs-a-rebuilt-mysore-palace-and-3bm) `#javascript` `#threejs` `#webdev` · *by amananandrai*
+- [**Day 89: A Dead Service and a Private Container That Serves**](https://dev.to/ndcodes/day-89-a-marker-in-the-file-and-a-grant-somewhere-else-1deo) `#devops` `#ansible` `#azure` · *by Nnamdi Felix Ibe*
+- [**Dead Keys: I Brought Back the Typing Games. Kiro Did the Heavy Lifting.**](https://dev.to/earlgreyhot1701d/dead-keys-i-brought-back-the-typing-games-kiro-did-the-heavy-lifting-5gc2) `#ai` `#kiro` `#gamedev` · *by Earl Grey*
 
 ---
 
 ### 📊 Crypto & Market Pulse
 | Asset | Symbol | Price (USD) | 24h Trend |
 | :--- | :--- | :--- | :--- |
-| **Bitcoin** | `BTC` | $55,788.00 | 🔴 `-9.39%` |
-| **Ethereum** | `ETH` | $1,561.04 | 🔴 `-9.63%` |
-| **Solana** | `SOL` | $65.48 | 🔴 `-9.33%` |
-| **BNB** | `BNB` | $512.68 | 🔴 `-9.71%` |
+| **Bitcoin** | `BTC` | $59,102.00 | 🟢 `+5.02%` |
+| **Ethereum** | `ETH` | $1,658.43 | 🟢 `+6.28%` |
+| **Solana** | `SOL` | $69.20 | 🟢 `+4.89%` |
+| **BNB** | `BNB` | $539.34 | 🟢 `+5.16%` |
 
 ---
 
@@ -80,6 +82,7 @@ Accept a client-generated UUID in the `Idempotency-Key` header:
 <details>
 <summary><b>Click to expand past digests</b></summary>
 
+- 📄 [2026-11-22](digest/2026/11/2026-11-22.md)
 - 📄 [2026-11-21](digest/2026/11/2026-11-21.md)
 - 📄 [2026-11-20](digest/2026/11/2026-11-20.md)
 - 📄 [2026-11-19](digest/2026/11/2026-11-19.md)
@@ -94,7 +97,6 @@ Accept a client-generated UUID in the `Idempotency-Key` header:
 - 📄 [2026-11-10](digest/2026/11/2026-11-10.md)
 - 📄 [2026-11-09](digest/2026/11/2026-11-09.md)
 - 📄 [2026-11-08](digest/2026/11/2026-11-08.md)
-- 📄 [2026-11-07](digest/2026/11/2026-11-07.md)
 
 </details>
 
